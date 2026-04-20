@@ -1,0 +1,241 @@
+Attribute VB_Name = "FX Automator"
+Option Compare Database
+Option Explicit
+
+' =====================================================================================
+' MODUL: FX Automator (S˙Ëasù inovatÌvneho modulu Smart-Pairing)
+' PROJEKT: e-smartbalance s.r.o.
+' POPIS: ZabezpeËuje automatickÈ sùahovanie aktu·lnych aj historick˝ch kurzov˝ch
+'        lÌstkov z API N·rodnej banky Slovenska (NBS) priamo do relaËnej datab·zy.
+' =====================================================================================
+
+
+' ==============================================================================
+' PROMPT PRE UMEL⁄ INTELIGENCIU (AI) NA GENEROVANIE TOHTO K”DU:
+' Rola: Si expert na MS Access, VBA a integr·ciu REST API.
+'
+' ⁄loha: Vytvor VBA modul pre MS Access, ktor˝ automaticky sùahuje kurzovÈ
+' lÌstky z API N·rodnej banky Slovenska (NBS) vo form·te XML.
+' Vytvor funkciu 'NacitajKurzyNBS'.
+' Funkcia musÌ naËÌtaù ˙daje z nbs 'https://nbs.sk/export/sk/exchange-rate/{YYYY-MM-DD}/xml'.
+' N·sledne musÌ vyparsovaù XML uzly (Cube) a uloûiù meny (currency) a kurzy (rate)
+' do tabuæky 'Tbl_kurzy_nbs'.
+' Oöetri slovenskÈ desatinnÈ Ëiarky pri prevode na Double a skontroluj, Ëi
+' kurzy pre dan˝ deÚ uû v datab·ze neexistuj˙.
+' Na z·ver pridaj testovaciu proced˙ru 'Test_NacitajHistorickeKurzy'.
+'
+' KONTEXT D¡T (Strukt˙ra datab·zy):
+' 1. Tbl_kurzy_nbs: ID_kurzu (AutoNumber/PK), Time (Date/Time),
+'    currency (Short Text - napr. USD, CZK), Rate (Number/Double).
+' ==============================================================================
+
+' -------------------------------------------------------------------------------------
+' FUNKCIA: NacitajKurzyNBS
+' ⁄»EL:    Dynamicky stiahne XML kurzov˝ lÌstok z NBS pre zadan˝ d·tum a uloûÌ ho.
+' N¡VRATOV¡ HODNOTA: Boolean (True = ˙spech, False = chyba pripojenia alebo spracovania)
+' PARAMETRE:
+'   - datumUhrady (Date): D·tum, pre ktor˝ potrebujeme zÌskaù kurz.
+'   - tichyRezim (Boolean): Ak je True, nehl·si chyby ani ˙spech oknami (MsgBox).
+' -------------------------------------------------------------------------------------
+Function NacitajKurzyNBS(datumUhrady As Date, Optional tichyRezim As Boolean = False) As Boolean
+    Dim http As Object
+    Dim xmlDoc As Object
+    Dim xmlNodes As Object
+    Dim node As Object
+    Dim db As DAO.Database
+    Dim rs As DAO.Recordset
+    Dim url As String
+    Dim datumZ_XML As Date
+    Dim pocetExistujucich As Long
+    Dim menaZ_XML As String
+    Dim kurzRaw As String
+    Dim kurzZ_XML As Double
+    Dim sqlDatum As String
+    Dim formatovanyDatumPreURL As String
+    
+    On Error GoTo ErrorHandler
+
+    ' PREDVOLEN› STAV: Funkcia zaËÌna s predpokladom ne˙spechu
+    NacitajKurzyNBS = False
+
+    ' 1. PRÕPRAVA SPOJENIA S API NBS
+    formatovanyDatumPreURL = Format(datumUhrady, "yyyy-mm-dd")
+    url = "https://nbs.sk/export/sk/exchange-rate/" & formatovanyDatumPreURL & "/xml"
+
+    Set http = CreateObject("MSXML2.ServerXMLHTTP.6.0")
+    http.Open "GET", url, False
+    http.send
+
+    ' Kontrola dostupnosti servera
+    If http.Status <> 200 Then
+        If Not tichyRezim Then MsgBox "Chyba pripojenia k NBS pre d·tum " & datumUhrady & "! (Status: " & http.Status & ")", vbCritical
+        GoTo Cistka
+    End If
+
+    ' 2. SPRACOVANIE XML S⁄BORU
+    Set xmlDoc = CreateObject("MSXML2.DOMDocument.6.0")
+    xmlDoc.async = False
+    xmlDoc.SetProperty "SelectionNamespaces", "xmlns:ns='http://www.ecb.int/vocabulary/2002-08-01/eurofxref'"
+    xmlDoc.loadXML http.responseText
+
+    ' Extrakcia d·tumu z XML
+    On Error Resume Next
+    Set node = xmlDoc.selectSingleNode("//ns:Cube[@time]")
+    If Not node Is Nothing Then
+        datumZ_XML = CDate(node.Attributes.getNamedItem("time").Text)
+    End If
+    On Error GoTo ErrorHandler
+
+    If datumZ_XML = 0 Then
+        If Not tichyRezim Then MsgBox "V XML sa nepodarilo n·jsù d·tum pre " & datumUhrady & ".", vbCritical
+        GoTo Cistka
+    End If
+
+    ' 3. KONTROLA EXISTUJ⁄CICH D¡T
+    sqlDatum = Format(datumZ_XML, "mm\/dd\/yyyy")
+    pocetExistujucich = DCount("*", "Tbl_kurzy_nbs", "[time] = #" & sqlDatum & "#")
+    
+    If pocetExistujucich > 0 Then
+        If Not tichyRezim Then
+            If MsgBox("Kurzy pre d·tum " & datumZ_XML & " uû v datab·ze s˙. PrepÌsaù?", vbQuestion + vbYesNo) = vbNo Then
+                GoTo Cistka
+            End If
+        End If
+    End If
+
+    ' 4. Z¡PIS DO TABUºKY
+    Set xmlNodes = xmlDoc.selectNodes("//ns:Cube[@currency]")
+    Set db = CurrentDb
+    Set rs = db.OpenRecordset("SELECT * FROM Tbl_kurzy_nbs WHERE [time] = #" & sqlDatum & "#", dbOpenDynaset)
+
+    For Each node In xmlNodes
+        menaZ_XML = node.Attributes.getNamedItem("currency").Text
+        kurzRaw = node.Attributes.getNamedItem("rate").Text
+        
+        ' Prevod s oöetrenÌm slovenskej desatinnej Ëiarky
+        kurzZ_XML = CDbl(Replace(kurzRaw, ".", ","))
+        
+        rs.FindFirst "[currency] = '" & menaZ_XML & "'"
+        
+        If rs.NoMatch Then
+            rs.AddNew
+            rs![Time] = datumZ_XML
+            rs![currency] = menaZ_XML
+        Else
+            rs.Edit
+        End If
+        
+        rs![Rate] = kurzZ_XML
+        rs.Update
+    Next node
+
+    ' AK SME SA DOSTALI Aé SEM, VäETKO PREBEHLO ⁄SPEäNE
+    NacitajKurzyNBS = True
+    If Not tichyRezim Then MsgBox "Import ˙speöne dokonËen˝ pre: " & datumZ_XML, vbInformation, "Hotovo"
+
+Cistka:
+    On Error Resume Next
+    If Not rs Is Nothing Then rs.Close: Set rs = Nothing
+    Set db = Nothing: Set xmlDoc = Nothing: Set http = Nothing
+    Exit Function
+
+ErrorHandler:
+    If Not tichyRezim Then MsgBox "Chyba: " & Err.Description, vbCritical
+    Resume Cistka
+End Function
+
+' -------------------------------------------------------------------------------------
+' PROCED⁄RA: Test_NacitajHistorickeKurzy
+' ⁄»EL:      Overenie funkËnosti volania funkcie s rÙznymi d·tumami.
+' -------------------------------------------------------------------------------------
+Sub Test_NacitajHistorickeKurzy()
+    Dim testD·tum As Date
+    Dim vysledok As Boolean
+    
+    testD·tum = DateSerial(2023, 2, 15)
+    
+    Debug.Print "Testujem sùahovanie pre: " & testD·tum
+    
+    ' Volanie funkcie a spracovanie jej n·vratovej hodnoty
+    vysledok = NacitajKurzyNBS(testD·tum, True)
+    
+    If vysledok = True Then
+        Debug.Print "TEST ⁄SPEäN›: D·ta boli stiahnutÈ a uloûenÈ."
+        MsgBox "Test prebehol ˙speöne!", vbInformation
+    Else
+        Debug.Print "TEST ZLYHAL: Skontrolujte pripojenie alebo logy."
+        MsgBox "Test zlyhal!", vbExclamation
+    End If
+End Sub
+
+
+' ==============================================================================
+' AI PROMPT (ZADANIE):
+' "Vytvor proced˙ru, ktor· prejde tabuæku 'Tbl_faktura' a pre vöetky fakt˙ry
+' v cudzej mene, ktorÈ nemaj˙ vyplnen˝ kurz, ho automaticky doplnÌ.
+' Ak kurz v datab·ze ch˝ba, zavolaj funkciu 'NacitajKurzyNBS'.
+' Oöetri vÌkendy pomocou vyhæadania poslednÈho dostupnÈho kurzu."
+' ==============================================================================
+
+Public Sub AktualizujKurzyVFakturach()
+    Dim db As DAO.Database
+    Dim rs As DAO.Recordset
+    Dim menaTxt As String
+    Dim datumFaktury As Date
+    Dim kurzNBS As Double
+    Dim maxDatum As Variant
+    Dim sqlDatum As String
+    Dim upravenePocet As Long
+    
+    Set db = CurrentDb
+    ' Vyberieme len fakt˙ry v cudzej mene (FK_mena <> 1), kde kurz ch˝ba [cite: 61]
+    Set rs = db.OpenRecordset("SELECT * FROM Tbl_faktura WHERE FK_mena <> 1 AND (kurz_vystavenia Is Null OR kurz_vystavenia = 0)")
+    
+    If rs.EOF Then
+        MsgBox "Vöetky fakt˙ry maj˙ kurzy doplnenÈ.", vbInformation, "Hotovo"
+        Exit Sub
+    End If
+    
+    Do While Not rs.EOF
+        datumFaktury = rs!Datum_vystavenia
+        
+        ' 1. Preklad ID meny na textov˝ kÛd pre NBS [cite: 11, 12, 83]
+        Select Case rs!FK_mena
+            Case 2: menaTxt = "USD"
+            Case 4: menaTxt = "CZK"
+            Case 6: menaTxt = "GBP"
+            Case 7: menaTxt = "HUF"
+            Case Else: menaTxt = ""
+        End Select
+        
+        If menaTxt <> "" Then
+            sqlDatum = Format(datumFaktury, "mm\/dd\/yyyy")
+            
+            ' 2. Vyhæadanie najnovöieho kurzu v datab·ze k danÈmu dÚu (rieöi vÌkendy) [cite: 38, 46]
+            maxDatum = DMax("[time]", "Tbl_kurzy_nbs", "[currency]='" & menaTxt & "' AND [time]<=#" & sqlDatum & "#")
+            
+            ' 3. Ak kurz v DB nie je, sk˙sime ho stiahnuù z API NBS [cite: 35, 42]
+            If IsNull(maxDatum) Then
+                Call NacitajKurzyNBS(datumFaktury, True) ' Tich˝ reûim
+                maxDatum = DMax("[time]", "Tbl_kurzy_nbs", "[currency]='" & menaTxt & "' AND [time]<=#" & sqlDatum & "#")
+            End If
+            
+            ' 4. Z·pis kurzu do fakt˙ry
+            If Not IsNull(maxDatum) Then
+                kurzNBS = Nz(DLookup("rate", "Tbl_kurzy_nbs", "[currency]='" & menaTxt & "' AND [time]=#" & Format(maxDatum, "mm\/dd\/yyyy") & "#"), 1)
+                
+                rs.Edit
+                rs!kurz_vystavenia = kurzNBS
+                rs.Update
+                upravenePocet = upravenePocet + 1
+            End If
+        End If
+        
+        rs.MoveNext
+    Loop
+    
+    rs.Close
+    Set rs = Nothing
+    
+    MsgBox "Aktualiz·cia kurzov dokonËen·!" & vbCrLf & "Upraven˝ch fakt˙r: " & upravenePocet, vbInformation
+End Sub
