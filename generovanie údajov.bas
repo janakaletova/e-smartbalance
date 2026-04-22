@@ -25,11 +25,11 @@ Option Compare Database
 ' PROCEDÚRA 1: DoplnFakturyDo350_IbaPracovneDni
 ' POPIS: Táto procedúra slúi na hromadné vytvorenie testovacích dát.
 '        Najprv zistí, ko¾ko faktúr u v tabu¾ke Tbl_faktura je, a následne
-'        dogeneruje chıbajúci poèet do 350. Zabezpeèuje, aby dátumy vystavenia
+'        dogeneruje chıbajúci poèet do 400. Zabezpeèuje, aby dátumy vystavenia
 '        pripadli vıluène na pracovné dni (preskakuje víkendy) a aby nepresiahli
 '        dátum 17.4.2026. Taktie náhodne simuluje vydané a prijaté faktúry v rôznych menách.
 ' ------------------------------------------------------------------------------
-Sub DoplnFakturyDo350_IbaPracovneDni()
+Sub DoplnFakturyDo400_IbaPracovneDni()
     Dim db As DAO.Database
     Dim rs As DAO.Recordset
     Dim datum As Date
@@ -39,13 +39,15 @@ Sub DoplnFakturyDo350_IbaPracovneDni()
     Dim partnerID As Integer
     Dim menaID As Integer
     Dim typ As Boolean
+    Dim akt_datum As Date
+
     
     Set db = CurrentDb
     Set rs = db.OpenRecordset("Tbl_faktura")
     
     ' 1. Zistíme, ko¾ko faktúr v tabu¾ke u reálne máš
     pocetExistujucich = DCount("*", "Tbl_faktura")
-    pocetNaVygenerovanie = 350 - pocetExistujucich
+    pocetNaVygenerovanie = 400 - pocetExistujucich
     
     If pocetNaVygenerovanie <= 0 Then
         MsgBox "U máš " & pocetExistujucich & " faktúr! Nie je potrebné generova ïalšie.", vbInformation
@@ -56,6 +58,8 @@ Sub DoplnFakturyDo350_IbaPracovneDni()
     ' Zaèíname generova od polovice januára
     datum = DateSerial(2026, 1, 20)
     
+    akt_datum = Now()
+    
     For i = 1 To pocetNaVygenerovanie
         ' Kadú 3. faktúru posunieme o deò dopredu, aby boli nasekané tesne za sebou
         If i Mod 3 = 0 Then datum = datum + 1
@@ -65,8 +69,8 @@ Sub DoplnFakturyDo350_IbaPracovneDni()
             datum = datum + 1
         Wend
         
-        ' Zastavíme generovanie na 17.4.2026 (Piatok), aby sme nepresiahli dnešnı deò
-        If datum > DateSerial(2026, 4, 17) Then
+        ' Zastavíme generovanie na akt. datume, aby sme nepresiahli dnešnı deò
+        If datum > akt_datum Then
             datum = DateSerial(2026, 1, 20) ' Ak sme na konci, zaèneme opä od januára
         End If
         
@@ -91,7 +95,7 @@ Sub DoplnFakturyDo350_IbaPracovneDni()
         ' Zápis nového riadku
         rs.AddNew
         rs!FK_partner_ID = partnerID
-        rs!Typ_faktury = typ
+        'rs!Typ_faktury = typ
         rs!Datum_vystavenia = datum
         rs!suma = Round((Rnd() * 1500) + 100, 2)
         ' VS vo formáte YYYYMMDD + poradové èíslo pre unikátnos
@@ -105,81 +109,174 @@ Sub DoplnFakturyDo350_IbaPracovneDni()
     Set db = Nothing
     
     MsgBox "Úspech! Zvyšnıch " & pocetNaVygenerovanie & " faktúr bolo dogenerovanıch." & vbCrLf & _
-           "Teraz máš v tabu¾ke presne 350 záznamov, bez víkendov a nasekané do 17. 4. 2026.", vbInformation
+           "Teraz máš v tabu¾ke presne 400 záznamov, bez víkendov a nasekané do dnes.", vbInformation
 End Sub
 
-
+' ------------------------------------------------------------------------------
+' PROCEDÚRA: GenerujLogickeVS_PreOdberatelov
+' ÚÈEL: Prejde všetky vystavené faktúry a pridelí im novı, unikátny variabilnı
+'       symbol vo formáte RRRRMMXXXX.
+' OPRAVA: Typ faktúry sa urèuje dynamicky z prepojenej tabu¾ky Tbl_partner
+'         (odstránená redundancia po¾a Typ_faktury).
+' LOGIKA: Poradové èíslo (XXXX) sa automaticky resetuje pri zmene mesiaca.
+' ------------------------------------------------------------------------------
+Sub GenerujLogickeVS_PreOdberatelov()
+    Dim db As DAO.Database
+    Dim rs As DAO.Recordset
+    Dim aktualnyRokMesiac As String
+    Dim pocitadlo As Integer
+    Dim novyVS As String
+    Dim pocetUpravenych As Long
+    Dim strSQL As String
+    
+    Set db = CurrentDb
+    
+    ' SQL dotaz prepojí faktúry s partnermi a vyfiltruje iba odberate¾ov (typ_partnera = True)
+    strSQL = "SELECT Tbl_faktura.* FROM Tbl_faktura " & _
+             "INNER JOIN Tbl_partner ON Tbl_faktura.FK_partner_ID = Tbl_partner.PK_partner " & _
+             "WHERE Tbl_partner.typ_partnera = True " & _
+             "ORDER BY Tbl_faktura.Datum_vystavenia ASC, Tbl_faktura.ID_faktura ASC"
+    
+    Set rs = db.OpenRecordset(strSQL)
+    
+    If rs.EOF Then
+        MsgBox "Nenašli sa iadne vydané faktúry pre odberate¾ov.", vbInformation, "Chyba"
+        rs.Close
+        Set rs = Nothing
+        Set db = Nothing
+        Exit Sub
+    End If
+    
+    aktualnyRokMesiac = ""
+    pocetUpravenych = 0
+    
+    ' Prechádzame záznamy v sluèke
+    Do While Not rs.EOF
+        ' Skontrolujeme, èi sa zmenil mesiac alebo rok. Ak áno, resetujeme poèítadlo na 1.
+        If Format(rs!Datum_vystavenia, "yyyymm") <> aktualnyRokMesiac Then
+            aktualnyRokMesiac = Format(rs!Datum_vystavenia, "yyyymm")
+            pocitadlo = 1
+        End If
+        
+        ' Zloenie nového VS: RokMesiac + 4-miestne poradové èíslo
+        ' Vısledok napr.: 2026010001
+        novyVS = aktualnyRokMesiac & Format(pocitadlo, "0000")
+        
+        ' Aktualizácia záznamu v tabu¾ke
+        rs.Edit
+        rs!Variabilny_symbol = novyVS
+        rs.Update
+        
+        ' Zvıšenie poèítadiel pre ïalší krok
+        pocitadlo = pocitadlo + 1
+        pocetUpravenych = pocetUpravenych + 1
+        rs.MoveNext
+    Loop
+    
+    rs.Close
+    Set rs = Nothing
+    Set db = Nothing
+    
+    MsgBox "Úspech! Bolo vygenerovanıch " & pocetUpravenych & " novıch variabilnıch symbolov pre odberate¾ov." & vbCrLf & _
+           "Nová logika: ROK + MESIAC + 4-miestne poradové èíslo (napr. 2026010001).", vbInformation, "Generátor VS"
+End Sub
 ' ==============================================================================
-' AI PROMPT (ZMENOVÁ POIADAVKA):
+' AI PROMPT (ZMENOVÁ POIADAVKA PRE UMELÚ INTELIGENCIU):
 ' "Uprav generátor bankového vıpisu tak, aby namiesto jedného ve¾kého súboru
-' vygeneroval samostatné CSV súbory za kadı kalendárny mesiac (napr. vıpis_01.csv,
-' vıpis_02.csv atï.).
+' vygeneroval samostatné CSV súbory za kadı kalendárny mesiac (napr. vıpis_01.csv).
 '
-' Logika rozdelenia:
+' Logika rozdelenia a nové scenáre:
 ' 1. Program prejde všetky faktúry a pre kadú nasimuluje platbu (scenáre).
-' 2. Platba sa automaticky zapíše do súboru prislúchajúcemu danému mesiacu.
-' 3. Zachovaj ochranu pred budúcimi dátumami (dnes je 19.4.2026).
-' 4. Bankové poplatky generuj mesaène a vlo ich vdy do správneho mesaèného súboru."
+' 2. Rozde¾ platby do scenárov: ideálna (40%), oneskorená pre cudzie meny (10%),
+'    splátky - 2 platby (8%) splatené, 2 - platby z piatich ( nesplatené) (2%)  , preklep vo VS (15%), zmena IBANu (10%) a úplnı nezmysel (5%).
+' 3. Ak je partner Dodávate¾ (True), suma v banke musí by záporná (vıdavok).
+' 4. Zachovaj ochranu pred budúcimi dátumami (dnes je 19.4.2026).
+' 5. Bankové poplatky generuj mesaène a vlo ich vdy do správneho mesaèného súboru."
 ' ==============================================================================
 
 ' ------------------------------------------------------------------------------
 ' PROCEDÚRA: GenerujMesenéBankovéVıpisyCSV
-' POPIS: Vytvorí sadu CSV súborov rozdelenıch pod¾a mesiacov.
+' POPIS: Vytvorí sadu CSV súborov rozdelenıch pod¾a mesiacov so splátkovou logikou
+'        a oneskorenımi platbami. Zisuje celkovı poèet faktúr: ak je ich viac
+'        ako 340, pri prvıch 340 platbách je VS bezchybnı. Pre zvyšné platby
+'        (nad 340) môu vznika preklepy alebo nezmysly vo VS. Splátková logika
+'        (úplná aj èiastoèná úhrada) je zachovaná plnohodnotne pre správne
+'        aj pre chybné variabilné symboly.
 ' ------------------------------------------------------------------------------
 Sub GenerujMesenéBankovéVıpisyCSV()
     Dim db As DAO.Database
     Dim rs As DAO.Recordset
     Dim fso As Object
-    Dim tsArray(1 To 12) As Object ' Pole pre súborové streamy (pre kadı mesiac jeden)
+    Dim tsArray(1 To 12) As Object ' Pole pre súborové streamy
     Dim filePath As String
     Dim varSymbol As String
+    Dim pouzityVS As String
     Dim suma As Double
     Dim datumVystavenia As Date
     Dim datumPlatby As Date
+    Dim datumPlatby1 As Date, datumPlatby2 As Date
     Dim dnesnyDatum As Date
     Dim menaID As Integer
     Dim menaStr As String
-    Dim scenario As Integer
+    Dim typPlatby As Integer
     Dim outLine As String
     Dim m As Integer
     
     Dim partnerIBAN As String
     Dim partnerNazov As String
     Dim skutocnyIbanPreCSV As String
+    Dim pouzityIBAN As String
     
-    dnesnyDatum = Date ' 19. apríl 2026
+    Dim pocetFaktur As Long
+    Dim cisloFaktury As Long
+    
+    dnesnyDatum = Date ' Berie aktuálny dátum (napr. 19. apríl 2026)
     Set fso = CreateObject("Scripting.FileSystemObject")
     Set db = CurrentDb
     
-    ' 1. PRÍPRAVA SÚBOROV (Otvoríme súbory pre všetky relevantné mesiace)
+    ' 1. PRÍPRAVA SÚBOROV
     For m = 1 To Month(dnesnyDatum)
-        filePath = CurrentProject.Path & "\bankovy_vypis_2026_" & Format(m, "00") & ".csv"
+        filePath = CurrentProject.Path & "\bankovy_vypis_" & Year(dnesnyDatum) & "_" & Format(m, "00") & ".csv"
         Set tsArray(m) = fso.CreateTextFile(filePath, True, True)
-        ' Zápis hlavièky do kadého mesaèného súboru
         tsArray(m).WriteLine "Var_Symbol_Banka;Suma_Prijata;Mena_Pohybu;Datum_Prijmu;IBAN_Protistrany;Nazov_Protistrany"
     Next m
     
-    ' 2. NAÈÍTANIE FAKTÚR
+    ' 2. NAÈÍTANIE FAKTÚR A ZISTENIE POÈTU
     Dim sqlQuery As String
-
     sqlQuery = "SELECT F.*, P.iban, P.názov AS NazovPartnera, P.typ_partnera " & _
                "FROM Tbl_faktura AS F INNER JOIN Tbl_partner AS P " & _
                "ON F.FK_partner_ID = P.PK_partner " & _
                "ORDER BY F.Datum_vystavenia"
                
     Set rs = db.OpenRecordset(sqlQuery)
+    
+    If rs.EOF Then
+        MsgBox "iadne faktúry na spracovanie.", vbExclamation
+        rs.Close
+        Set rs = Nothing: Set db = Nothing: Set fso = Nothing
+        Exit Sub
+    End If
+    
+    ' Zistenie celkového poètu faktúr presunom na koniec a spä
+    rs.MoveLast
+    pocetFaktur = rs.RecordCount
+    rs.MoveFirst
+    
     Randomize
+    cisloFaktury = 0
     
     ' 3. GENERUJEME PLATBY A ROZDE¼UJEME ICH DO SÚBOROV
     Do While Not rs.EOF
+        cisloFaktury = cisloFaktury + 1
+        
         varSymbol = Nz(rs!Variabilny_symbol, "")
         suma = Nz(rs!suma, 0)
-' --- OPRAVA: Mínusové sumy pre dodávate¾ov ---
-        ' Ak je partner Dodávate¾ (True), my platíme jemu -> peniaze z nášho úètu odchádzajú
+        
+        ' Mínusové sumy pre dodávate¾ov
         If rs!typ_partnera = True Then
             suma = suma * -1
         End If
-        ' ---------------------------------------------
+        
         datumVystavenia = rs!Datum_vystavenia
         menaID = Nz(rs!FK_mena, 1)
         partnerIBAN = Nz(rs!iban, "")
@@ -196,53 +293,94 @@ Sub GenerujMesenéBankovéVıpisyCSV()
             Case 2: menaStr = "USD": Case 7: menaStr = "HUF": Case Else: menaStr = "EUR"
         End Select
         
-        scenario = Int(Rnd() * 100) + 1
+        ' ---------------------------------------------------------
+        ' A) ODDELENÁ LOGIKA PRE VARIABILNİ SYMBOL
+        ' ---------------------------------------------------------
+        pouzityVS = varSymbol
+        If pocetFaktur > 340 And cisloFaktury > 340 Then
+            ' Zvyšné platby MÔU ma problém vo VS (napr. 50% šanca na chybu)
+            Dim vsChyba As Integer
+            vsChyba = Int(Rnd() * 100) + 1
+            
+            If vsChyba <= 30 Then
+                ' 30% šanca na preklep (napríklad zámena 0 za O)
+                If InStr(pouzityVS, "0") > 0 Then pouzityVS = Replace(pouzityVS, "0", "O", 1, 1)
+            ElseIf vsChyba <= 50 Then
+                ' 20% šanca na úplnı nezmysel
+                pouzityVS = "UHRADA" & Int(Rnd() * 99)
+            End If
+            ' Ak padne 51-100, VS zostáva správny aj nad limit 340
+        End If
         
-        ' Logika scenárov (vıpoèet dátumu platby)
-        Select Case scenario
-            Case 1 To 50 ' Ideálna platba
+        ' ---------------------------------------------------------
+        ' B) ODDELENÁ LOGIKA PRE IBAN (Zmena banky)
+        ' ---------------------------------------------------------
+        pouzityIBAN = skutocnyIbanPreCSV
+        If Int(Rnd() * 100) + 1 <= 10 Then ' 10% šanca na zmenu banky pre akúko¾vek platbu
+            pouzityIBAN = "SK" & Int(Rnd() * 90 + 10) & "1100" & Format(Int(Rnd() * 999999999), "000000000000")
+        End If
+        
+        ' ---------------------------------------------------------
+        ' C) TYP PLATBY (Urèuje iba termíny a splátky)
+        ' ---------------------------------------------------------
+        typPlatby = Int(Rnd() * 100) + 1
+        
+        Select Case typPlatby
+            Case 1 To 60 ' 1. Ideálna platba v celku (60%)
                 datumPlatby = datumVystavenia + Int(Rnd() * 14) + 1
                 If datumPlatby <= dnesnyDatum Then
-                    outLine = varSymbol & ";" & Replace(Format(suma, "0.00"), ",", ".") & ";" & menaStr & ";" & Format(datumPlatby, "dd.mm.yyyy") & ";" & skutocnyIbanPreCSV & ";" & partnerNazov
-                    tsArray(Month(datumPlatby)).WriteLine outLine ' Zápis do správneho mesiaca
-                End If
-                
-            Case 51 To 65 ' Preklep vo VS
-                datumPlatby = datumVystavenia + Int(Rnd() * 10) + 1
-                If datumPlatby <= dnesnyDatum Then
-                    Dim chybnyVS As String: chybnyVS = varSymbol
-                    If InStr(chybnyVS, "0") > 0 Then chybnyVS = Replace(chybnyVS, "0", "O", 1, 1)
-                    outLine = chybnyVS & ";" & Replace(Format(suma, "0.00"), ",", ".") & ";" & menaStr & ";" & Format(datumPlatby, "dd.mm.yyyy") & ";" & skutocnyIbanPreCSV & ";" & partnerNazov
+                    outLine = pouzityVS & ";" & Replace(Format(suma, "0.00"), ",", ".") & ";" & menaStr & ";" & Format(datumPlatby, "dd.mm.yyyy") & ";" & pouzityIBAN & ";" & partnerNazov
                     tsArray(Month(datumPlatby)).WriteLine outLine
                 End If
                 
-            Case 66 To 75 ' Zmena banky
-                datumPlatby = datumVystavenia + Int(Rnd() * 10) + 1
+            Case 61 To 75 ' 2. Oneskorená platba v celku pre kurzovı rozdiel (15%)
+                If menaID <> 1 Then
+                    datumPlatby = datumVystavenia + Int(Rnd() * 20) + 30
+                Else
+                    datumPlatby = datumVystavenia + Int(Rnd() * 14) + 1
+                End If
+                
                 If datumPlatby <= dnesnyDatum Then
-                    Dim zmenenyIBAN As String: zmenenyIBAN = "SK" & Int(Rnd() * 90 + 10) & "1100" & Format(Int(Rnd() * 999999999), "000000000000")
-                    outLine = varSymbol & ";" & Replace(Format(suma, "0.00"), ",", ".") & ";" & menaStr & ";" & Format(datumPlatby, "dd.mm.yyyy") & ";" & zmenenyIBAN & ";" & partnerNazov
+                    outLine = pouzityVS & ";" & Replace(Format(suma, "0.00"), ",", ".") & ";" & menaStr & ";" & Format(datumPlatby, "dd.mm.yyyy") & ";" & pouzityIBAN & ";" & partnerNazov
                     tsArray(Month(datumPlatby)).WriteLine outLine
                 End If
                 
-            Case 76 To 90 ' Èiastoèná platba (2 splátky môu by v rôznych mesiacoch!)
+            Case 76 To 90 ' 3. Platba na SPLÁTKY plne splatená (15%)
                 Dim s1 As Double: s1 = Round(suma / 2, 2)
                 Dim s2 As Double: s2 = suma - s1
-                ' 1. splátka
-                datumPlatby = datumVystavenia + Int(Rnd() * 3) + 1
-                If datumPlatby <= dnesnyDatum Then
-                    tsArray(Month(datumPlatby)).WriteLine varSymbol & ";" & Replace(Format(s1, "0.00"), ",", ".") & ";" & menaStr & ";" & Format(datumPlatby, "dd.mm.yyyy") & ";" & skutocnyIbanPreCSV & ";" & partnerNazov
-                    ' 2. splátka
-                    datumPlatby = datumPlatby + Int(Rnd() * 15) + 5
-                    If datumPlatby <= dnesnyDatum Then
-                        tsArray(Month(datumPlatby)).WriteLine varSymbol & ";" & Replace(Format(s2, "0.00"), ",", ".") & ";" & menaStr & ";" & Format(datumPlatby, "dd.mm.yyyy") & ";" & skutocnyIbanPreCSV & ";" & partnerNazov
+                
+                If menaID <> 1 Then
+                    datumPlatby1 = datumVystavenia + Int(Rnd() * 15) + 20
+                    datumPlatby2 = datumPlatby1 + Int(Rnd() * 20) + 15
+                Else
+                    datumPlatby1 = datumVystavenia + Int(Rnd() * 5) + 2
+                    datumPlatby2 = datumPlatby1 + Int(Rnd() * 10) + 5
+                End If
+                
+                If datumPlatby1 <= dnesnyDatum Then
+                    tsArray(Month(datumPlatby1)).WriteLine pouzityVS & ";" & Replace(Format(s1, "0.00"), ",", ".") & ";" & menaStr & ";" & Format(datumPlatby1, "dd.mm.yyyy") & ";" & pouzityIBAN & ";" & partnerNazov
+                    If datumPlatby2 <= dnesnyDatum Then
+                        tsArray(Month(datumPlatby2)).WriteLine pouzityVS & ";" & Replace(Format(s2, "0.00"), ",", ".") & ";" & menaStr & ";" & Format(datumPlatby2, "dd.mm.yyyy") & ";" & pouzityIBAN & ";" & partnerNazov
                     End If
                 End If
                 
-            Case Else ' Úplnı nezmysel
-                datumPlatby = datumVystavenia + Int(Rnd() * 7) + 1
-                If datumPlatby <= dnesnyDatum Then
-                    outLine = "UHRADA" & Int(Rnd() * 99) & ";" & Replace(Format(suma, "0.00"), ",", ".") & ";" & menaStr & ";" & Format(datumPlatby, "dd.mm.yyyy") & ";" & skutocnyIbanPreCSV & ";" & partnerNazov
-                    tsArray(Month(datumPlatby)).WriteLine outLine
+            Case 91 To 100 ' 4. TRVALİ NEDOPLATOK: 2 splátky z 5 (10%)
+                s1 = Round(suma / 5, 2)
+                s2 = Round(suma / 5, 2)
+                
+                If menaID <> 1 Then
+                    datumPlatby1 = datumVystavenia + Int(Rnd() * 15) + 20
+                    datumPlatby2 = datumPlatby1 + Int(Rnd() * 20) + 15
+                Else
+                    datumPlatby1 = datumVystavenia + Int(Rnd() * 5) + 2
+                    datumPlatby2 = datumPlatby1 + Int(Rnd() * 10) + 5
+                End If
+                
+                If datumPlatby1 <= dnesnyDatum Then
+                    tsArray(Month(datumPlatby1)).WriteLine pouzityVS & ";" & Replace(Format(s1, "0.00"), ",", ".") & ";" & menaStr & ";" & Format(datumPlatby1, "dd.mm.yyyy") & ";" & pouzityIBAN & ";" & partnerNazov
+                    If datumPlatby2 <= dnesnyDatum Then
+                        tsArray(Month(datumPlatby2)).WriteLine pouzityVS & ";" & Replace(Format(s2, "0.00"), ",", ".") & ";" & menaStr & ";" & Format(datumPlatby2, "dd.mm.yyyy") & ";" & pouzityIBAN & ";" & partnerNazov
+                    End If
                 End If
         End Select
         
@@ -251,27 +389,25 @@ Sub GenerujMesenéBankovéVıpisyCSV()
     
     ' 4. ZÁPIS MESAÈNİCH POPLATKOV
     For m = 1 To Month(dnesnyDatum)
-        ' Fixnı dátum poplatku
         If m = Month(dnesnyDatum) And 28 > Day(dnesnyDatum) Then
             datumPlatby = dnesnyDatum
         Else
-            datumPlatby = DateSerial(2026, m, 28)
+            datumPlatby = DateSerial(Year(dnesnyDatum), m, 28)
         End If
-        
-        outLine = "POPLATOK " & Format(m, "00") & "/2026;-7.50;EUR;" & Format(datumPlatby, "dd.mm.yyyy") & ";;Mesaènı poplatok za úèet"
+        outLine = "POPLATOK " & Format(m, "00") & "/" & Year(dnesnyDatum) & ";-7.50;EUR;" & Format(datumPlatby, "dd.mm.yyyy") & ";;Mesaènı poplatok za úèet"
         tsArray(m).WriteLine outLine
     Next m
     
-    ' 5. UPRATOVANIE (Zatvorenie všetkıch otvorenıch súborov)
+    ' 5. UPRATOVANIE
     On Error Resume Next
     For m = 1 To 12
-        tsArray(m).Close
+        If Not tsArray(m) Is Nothing Then tsArray(m).Close
     Next m
     
     rs.Close
     Set rs = Nothing: Set db = Nothing: Set fso = Nothing
     
-    MsgBox "Generovanie mesaènıch vıpisov úspešne dokonèené v prieèinku databázy!", vbInformation
+    MsgBox "Generovanie mesaènıch vıpisov úspešne dokonèené!", vbInformation
 End Sub
 
 ' ==============================================================================

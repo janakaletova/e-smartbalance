@@ -81,6 +81,10 @@ Sub ImportujBankovyVypis(ByVal filePath As String)
     Dim kurzNBS As Double
     Dim maxDatum As Variant
     Dim sqlDatum As String
+    Dim trebaStiahnut As Boolean
+    Dim lastTriedDate As Date
+    
+    lastTriedDate = 0 ' Pomocn· premenn· pre ochranu pred spamovanÌm API poËas sviatkov
     
     Set fso = CreateObject("Scripting.FileSystemObject")
     
@@ -133,10 +137,50 @@ Sub ImportujBankovyVypis(ByVal filePath As String)
                 
                 ' 1. Pokus: N·jsù najnovöÌ platn˝ kurz k d·tumu platby (rieöi aj vÌkendy)
                 maxDatum = DMax("[time]", "Tbl_kurzy_nbs", "[currency]='" & menaTxt & "' AND [time]<=#" & sqlDatum & "#")
+
+            
+            trebaStiahnut = False
+            
+            ' INTELIGENTN¡ LOGIKA SçAHOVANIA (Oprava Lazy Fetching chyby)
+            If IsNull(maxDatum) Then
+                ' Tabuæka je ˙plne pr·zdna
+                trebaStiahnut = True
+            Else
+                ' Ak˝ je to deÚ v t˝ûdni? (1 = Nedeæa, 2 = Pondelok ... 7 = Sobota vo vbSunday, my pouûijeme vbMonday pre eurÛpsky ötandard)
+                If Weekday(datumPlatby, vbMonday) <= 5 Then
+                    ' Je to pracovn˝ deÚ: Ak kurz v DB je staröÌ ako d·tum fakt˙ry, systÈm sa ho pok˙si stiahnuù.
+                    ' V˝nimka (lastTriedDate): Ak sme uû tento d·tum na API dopytovali a NBS n·m dalo staröÌ kurz (öt·tny sviatok), nebudeme API spamovaù znova.
+                    If maxDatum < datumPlatby And datumPlatby <> lastTriedDate Then
+                        trebaStiahnut = True
+                    End If
+                Else
+                    ' Je to vÌkend: StaËÌ n·m piatkov˝ kurz. Ak je ale "piatkov˝" kurz staröÌ viac ako 4 dni (naprÌklad pre Veæk˙ noc), API zavol·me.
+                    If DateDiff("d", maxDatum, datumPlatby) > 4 And datumPlatby <> lastTriedDate Then
+                        trebaStiahnut = True
+                    End If
+                End If
+            End If
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 
                 ' Ak kurz neexistuje, zavol·me FX Automator
-                If IsNull(maxDatum) Then
+                If trebaStiahnut Then
                     Call NacitajKurzyNBS(datumPlatby, True) ' True = Tich˝ reûim bez vyskakovacÌch okien
+                    
+                    ' Zapam‰t·me si, ûe sme tento konkrÈtny d·tum uû vysk˙öali, aby sme sa nezasekli na sviatkoch
+                    lastTriedDate = datumPlatby
                     
                     ' 2. Pokus: Znova preËÌtame najnovöÌ d·tum kurzu po stiahnutÌ
                     maxDatum = DMax("[time]", "Tbl_kurzy_nbs", "[currency]='" & menaTxt & "' AND [time]<=#" & sqlDatum & "#")

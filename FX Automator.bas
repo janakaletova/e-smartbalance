@@ -2,6 +2,21 @@ Attribute VB_Name = "FX Automator"
 Option Compare Database
 Option Explicit
 
+' ==============================================================================
+' PROMPT PRE UMELÚ INTELIGENCIU (AI) NA GENEROVANIE TOHTO KÓDU:
+' "Uprav existujúci VBA skript na sahovanie kurzov z NBS. Zmeò procedúru na
+' funkciu vracajúcu Boolean (True=úspech, False=chyba) pre lepšie ošetrenie
+' vıpadkov. Pridaj parameter 'datumUhrady' pre sahovanie historickıch lístkov
+' z dynamickej URL (RRRR-MM-DD) a parameter 'tichyRezim' (Boolean), ktorı pri
+' automatickom importe skryje všetky vyskakovacie okná a pri zhode dátumov
+' automaticky aktualizuje dáta v tabu¾ke.
+'
+' PRIDANIE NOVEJ FUNKCIE: Vytvor novú subrutinu 'DoplnKurzyDoFaktur', ktorá prejde
+' tabu¾ku 'Tbl_faktura'. Pre faktúry, ktoré nie sú v EUR a nemajú vyplnené pole
+' 'kurz_vystavenia', doh¾adá najbliší historickı kurz v 'Tbl_kurzy_nbs'.
+' Ak kurz chıba, funkcia si ho automaticky stiahne cez 'NacitajKurzyNBS'."
+' ==============================================================================
+
 ' =====================================================================================
 ' MODUL: FX Automator (Súèas inovatívneho modulu Smart-Pairing)
 ' PROJEKT: e-smartbalance s.r.o.
@@ -9,33 +24,10 @@ Option Explicit
 '        lístkov z API Národnej banky Slovenska (NBS) priamo do relaènej databázy.
 ' =====================================================================================
 
-
-' ==============================================================================
-' PROMPT PRE UMELÚ INTELIGENCIU (AI) NA GENEROVANIE TOHTO KÓDU:
-' Rola: Si expert na MS Access, VBA a integráciu REST API.
-'
-' Úloha: Vytvor VBA modul pre MS Access, ktorı automaticky sahuje kurzové
-' lístky z API Národnej banky Slovenska (NBS) vo formáte XML.
-' Vytvor funkciu 'NacitajKurzyNBS'.
-' Funkcia musí naèíta údaje z nbs 'https://nbs.sk/export/sk/exchange-rate/{YYYY-MM-DD}/xml'.
-' Následne musí vyparsova XML uzly (Cube) a uloi meny (currency) a kurzy (rate)
-' do tabu¾ky 'Tbl_kurzy_nbs'.
-' Ošetri slovenské desatinné èiarky pri prevode na Double a skontroluj, èi
-' kurzy pre danı deò u v databáze neexistujú.
-' Na záver pridaj testovaciu procedúru 'Test_NacitajHistorickeKurzy'.
-'
-' KONTEXT DÁT (Struktúra databázy):
-' 1. Tbl_kurzy_nbs: ID_kurzu (AutoNumber/PK), Time (Date/Time),
-'    currency (Short Text - napr. USD, CZK), Rate (Number/Double).
-' ==============================================================================
-
 ' -------------------------------------------------------------------------------------
 ' FUNKCIA: NacitajKurzyNBS
 ' ÚÈEL:    Dynamicky stiahne XML kurzovı lístok z NBS pre zadanı dátum a uloí ho.
 ' NÁVRATOVÁ HODNOTA: Boolean (True = úspech, False = chyba pripojenia alebo spracovania)
-' PARAMETRE:
-'   - datumUhrady (Date): Dátum, pre ktorı potrebujeme získa kurz.
-'   - tichyRezim (Boolean): Ak je True, nehlási chyby ani úspech oknami (MsgBox).
 ' -------------------------------------------------------------------------------------
 Function NacitajKurzyNBS(datumUhrady As Date, Optional tichyRezim As Boolean = False) As Boolean
     Dim http As Object
@@ -55,7 +47,6 @@ Function NacitajKurzyNBS(datumUhrady As Date, Optional tichyRezim As Boolean = F
     
     On Error GoTo ErrorHandler
 
-    ' PREDVOLENİ STAV: Funkcia zaèína s predpokladom neúspechu
     NacitajKurzyNBS = False
 
     ' 1. PRÍPRAVA SPOJENIA S API NBS
@@ -66,7 +57,6 @@ Function NacitajKurzyNBS(datumUhrady As Date, Optional tichyRezim As Boolean = F
     http.Open "GET", url, False
     http.send
 
-    ' Kontrola dostupnosti servera
     If http.Status <> 200 Then
         If Not tichyRezim Then MsgBox "Chyba pripojenia k NBS pre dátum " & datumUhrady & "! (Status: " & http.Status & ")", vbCritical
         GoTo Cistka
@@ -78,7 +68,6 @@ Function NacitajKurzyNBS(datumUhrady As Date, Optional tichyRezim As Boolean = F
     xmlDoc.SetProperty "SelectionNamespaces", "xmlns:ns='http://www.ecb.int/vocabulary/2002-08-01/eurofxref'"
     xmlDoc.loadXML http.responseText
 
-    ' Extrakcia dátumu z XML
     On Error Resume Next
     Set node = xmlDoc.selectSingleNode("//ns:Cube[@time]")
     If Not node Is Nothing Then
@@ -112,7 +101,6 @@ Function NacitajKurzyNBS(datumUhrady As Date, Optional tichyRezim As Boolean = F
         menaZ_XML = node.Attributes.getNamedItem("currency").Text
         kurzRaw = node.Attributes.getNamedItem("rate").Text
         
-        ' Prevod s ošetrením slovenskej desatinnej èiarky
         kurzZ_XML = CDbl(Replace(kurzRaw, ".", ","))
         
         rs.FindFirst "[currency] = '" & menaZ_XML & "'"
@@ -129,7 +117,6 @@ Function NacitajKurzyNBS(datumUhrady As Date, Optional tichyRezim As Boolean = F
         rs.Update
     Next node
 
-    ' AK SME SA DOSTALI A SEM, VŠETKO PREBEHLO ÚSPEŠNE
     NacitajKurzyNBS = True
     If Not tichyRezim Then MsgBox "Import úspešne dokonèenı pre: " & datumZ_XML, vbInformation, "Hotovo"
 
@@ -144,98 +131,125 @@ ErrorHandler:
     Resume Cistka
 End Function
 
-' -------------------------------------------------------------------------------------
-' PROCEDÚRA: Test_NacitajHistorickeKurzy
-' ÚÈEL:      Overenie funkènosti volania funkcie s rôznymi dátumami.
-' -------------------------------------------------------------------------------------
-Sub Test_NacitajHistorickeKurzy()
-    Dim testDátum As Date
-    Dim vysledok As Boolean
-    
-    testDátum = DateSerial(2023, 2, 15)
-    
-    Debug.Print "Testujem sahovanie pre: " & testDátum
-    
-    ' Volanie funkcie a spracovanie jej návratovej hodnoty
-    vysledok = NacitajKurzyNBS(testDátum, True)
-    
-    If vysledok = True Then
-        Debug.Print "TEST ÚSPEŠNİ: Dáta boli stiahnuté a uloené."
-        MsgBox "Test prebehol úspešne!", vbInformation
-    Else
-        Debug.Print "TEST ZLYHAL: Skontrolujte pripojenie alebo logy."
-        MsgBox "Test zlyhal!", vbExclamation
-    End If
-End Sub
-
-
 ' ==============================================================================
-' AI PROMPT (ZADANIE):
-' "Vytvor procedúru, ktorá prejde tabu¾ku 'Tbl_faktura' a pre všetky faktúry
-' v cudzej mene, ktoré nemajú vyplnenı kurz, ho automaticky doplní.
-' Ak kurz v databáze chıba, zavolaj funkciu 'NacitajKurzyNBS'.
-' Ošetri víkendy pomocou vyh¾adania posledného dostupného kurzu."
+' AI PROMPT (ZMENOVÁ POIADAVKA PRE UMELÚ INTELIGENCIU):
+' "Vytvor novú procedúru 'DoplnKurzyDoFaktur', ktorá prejde tabu¾ku 'Tbl_faktura'.
+' Úloha: Pre všetky faktúry v cudzej mene, ktoré nemajú vyplnenı 'kurz_vystavenia',
+' doh¾adaj správny historickı kurz z tabu¾ky 'Tbl_kurzy_nbs' pod¾a dátumu vystavenia.
+' Ak kurz v databáze chıba, zavolaj funkciu 'NacitajKurzyNBS' v tichom reime (True),
+' stiahni ho z API Národnej banky Slovenska a ulo priamo k hlavièke faktúry.
+' Zabezpeè aj riešenie pre víkendy (kedy NBS nevydáva kurzy) a na konci zobraz
+' štatistiku úspešnosti aktualizovanıch záznamov."
 ' ==============================================================================
 
-Public Sub AktualizujKurzyVFakturach()
+' -------------------------------------------------------------------------------------
+' PROCEDÚRA: DoplnKurzyDoFaktur
+' ÚÈEL:      Retrospektívne preh¾adá Tbl_faktura a doplní chıbajúce kurzy vystavenia
+'            pre cudzie meny. Automaticky dopytuje chıbajúce dni cez API NBS.
+' -------------------------------------------------------------------------------------
+Sub DoplnKurzyDoFaktur()
     Dim db As DAO.Database
-    Dim rs As DAO.Recordset
-    Dim menaTxt As String
+    Dim rsFaktury As DAO.Recordset
     Dim datumFaktury As Date
-    Dim kurzNBS As Double
+    Dim menaID As Integer
+    Dim menaStr As String
     Dim maxDatum As Variant
+    Dim zistenyKurz As Double
+    Dim pocetAktualizovanych As Integer
     Dim sqlDatum As String
-    Dim upravenePocet As Long
+    
+    Dim trebaStiahnut As Boolean
+    Dim lastTriedDate As Date
     
     Set db = CurrentDb
-    ' Vyberieme len faktúry v cudzej mene (FK_mena <> 1), kde kurz chıba [cite: 61]
-    Set rs = db.OpenRecordset("SELECT * FROM Tbl_faktura WHERE FK_mena <> 1 AND (kurz_vystavenia Is Null OR kurz_vystavenia = 0)")
     
-    If rs.EOF Then
-        MsgBox "Všetky faktúry majú kurzy doplnené.", vbInformation, "Hotovo"
+    ' OPRAVA: Zoradíme faktúry pod¾a dátumu (ORDER BY), aby sme postupovali chronologicky
+    Set rsFaktury = db.OpenRecordset("SELECT * FROM Tbl_faktura WHERE FK_mena <> 1 AND kurz_vystavenia Is Null ORDER BY Datum_vystavenia")
+    
+    pocetAktualizovanych = 0
+    lastTriedDate = 0 ' Pomocná premenná pre ochranu pred spamovaním API poèas sviatkov
+    
+    If rsFaktury.EOF Then
+        MsgBox "Všetky faktúry v cudzej mene u majú kurz úspešne vyplnenı!", vbInformation, "Kontrola kurzov"
+        rsFaktury.Close
+        Set rsFaktury = Nothing
+        Set db = Nothing
         Exit Sub
     End If
     
-    Do While Not rs.EOF
-        datumFaktury = rs!Datum_vystavenia
+    ' Preh¾adávame chıbajúce kurzy
+    Do While Not rsFaktury.EOF
+        datumFaktury = rsFaktury!Datum_vystavenia
+        menaID = rsFaktury!FK_mena
         
-        ' 1. Preklad ID meny na textovı kód pre NBS [cite: 11, 12, 83]
-        Select Case rs!FK_mena
-            Case 2: menaTxt = "USD"
-            Case 4: menaTxt = "CZK"
-            Case 6: menaTxt = "GBP"
-            Case 7: menaTxt = "HUF"
-            Case Else: menaTxt = ""
+        ' Mapovanie na textovı kód meny
+        Select Case menaID
+            Case 4: menaStr = "CZK"
+            Case 6: menaStr = "GBP"
+            Case 2: menaStr = "USD"
+            Case 7: menaStr = "HUF"
+            Case Else: menaStr = ""
         End Select
         
-        If menaTxt <> "" Then
+        If menaStr <> "" Then
             sqlDatum = Format(datumFaktury, "mm\/dd\/yyyy")
             
-            ' 2. Vyh¾adanie najnovšieho kurzu v databáze k danému dòu (rieši víkendy) [cite: 38, 46]
-            maxDatum = DMax("[time]", "Tbl_kurzy_nbs", "[currency]='" & menaTxt & "' AND [time]<=#" & sqlDatum & "#")
+            ' 1. KROK: H¾adáme akıko¾vek najnovší dostupnı kurz v našej DB
+            maxDatum = DMax("[Time]", "Tbl_kurzy_nbs", "[currency]='" & menaStr & "' AND [Time] <= #" & sqlDatum & "#")
             
-            ' 3. Ak kurz v DB nie je, skúsime ho stiahnu z API NBS [cite: 35, 42]
+            trebaStiahnut = False
+            
+            ' INTELIGENTNÁ LOGIKA SAHOVANIA (Oprava Lazy Fetching chyby)
             If IsNull(maxDatum) Then
-                Call NacitajKurzyNBS(datumFaktury, True) ' Tichı reim
-                maxDatum = DMax("[time]", "Tbl_kurzy_nbs", "[currency]='" & menaTxt & "' AND [time]<=#" & sqlDatum & "#")
+                ' Tabu¾ka je úplne prázdna
+                trebaStiahnut = True
+            Else
+                ' Akı je to deò v tıdni? (1 = Nede¾a, 2 = Pondelok ... 7 = Sobota vo vbSunday, my pouijeme vbMonday pre európsky štandard)
+                If Weekday(datumFaktury, vbMonday) <= 5 Then
+                    ' Je to pracovnı deò: Ak kurz v DB je starší ako dátum faktúry, systém sa ho pokúsi stiahnu.
+                    ' Vınimka (lastTriedDate): Ak sme u tento dátum na API dopytovali a NBS nám dalo starší kurz (štátny sviatok), nebudeme API spamova znova.
+                    If maxDatum < datumFaktury And datumFaktury <> lastTriedDate Then
+                        trebaStiahnut = True
+                    End If
+                Else
+                    ' Je to víkend: Staèí nám piatkovı kurz. Ak je ale "piatkovı" kurz starší viac ako 4 dni (napríklad pre Ve¾kú noc), API zavoláme.
+                    If DateDiff("d", maxDatum, datumFaktury) > 4 And datumFaktury <> lastTriedDate Then
+                        trebaStiahnut = True
+                    End If
+                End If
             End If
             
-            ' 4. Zápis kurzu do faktúry
-            If Not IsNull(maxDatum) Then
-                kurzNBS = Nz(DLookup("rate", "Tbl_kurzy_nbs", "[currency]='" & menaTxt & "' AND [time]=#" & Format(maxDatum, "mm\/dd\/yyyy") & "#"), 1)
+            ' 2. KROK: Ak nám kurz reálne chıba, stiahneme ho z API NBS!
+            If trebaStiahnut Then
+                Call NacitajKurzyNBS(datumFaktury, True)
                 
-                rs.Edit
-                rs!kurz_vystavenia = kurzNBS
-                rs.Update
-                upravenePocet = upravenePocet + 1
+                ' Zapamätáme si, e sme tento konkrétny dátum u vyskúšali, aby sme sa nezasekli na sviatkoch
+                lastTriedDate = datumFaktury
+                
+                ' Po stiahnutí znova vyh¾adáme aktuálny najnovší kurz
+                maxDatum = DMax("[Time]", "Tbl_kurzy_nbs", "[currency]='" & menaStr & "' AND [Time] <= #" & sqlDatum & "#")
+            End If
+            
+            ' 3. KROK: Zapíšeme nájdenı kurz do faktúry
+            If Not IsNull(maxDatum) Then
+                zistenyKurz = DLookup("Rate", "Tbl_kurzy_nbs", "[currency]='" & menaStr & "' AND [Time] = #" & Format(maxDatum, "mm\/dd\/yyyy") & "#")
+                
+                rsFaktury.Edit
+                rsFaktury!kurz_vystavenia = zistenyKurz
+                rsFaktury.Update
+                
+                pocetAktualizovanych = pocetAktualizovanych + 1
             End If
         End If
         
-        rs.MoveNext
+        rsFaktury.MoveNext
     Loop
     
-    rs.Close
-    Set rs = Nothing
+    rsFaktury.Close
+    Set rsFaktury = Nothing
+    Set db = Nothing
     
-    MsgBox "Aktualizácia kurzov dokonèená!" & vbCrLf & "Upravenıch faktúr: " & upravenePocet, vbInformation
+    MsgBox "Kontrola a sahovanie kurzov úspešne dokonèené!" & vbCrLf & vbCrLf & _
+           "Poèet aktualizovanıch faktúr: " & pocetAktualizovanych, vbInformation, "FX Automator: Faktúry"
 End Sub
+
