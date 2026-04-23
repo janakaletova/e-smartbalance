@@ -1,3 +1,4 @@
+"ID_faktura";"Pocet_Splatok";"Klient";"Variabilny_symbol";"Datum_Vyst_Faktury";"Suma_Faktury";"Mena";"Kurz_Faktury";"Faktura_v_EUR";"Datum_Uhrady";"Suma_Tejto_Platby";"Kurz_Platby";"Platba_v_EUR";"Kurzovy_Rozdiel";"Auto_Sparovane"
 2020450613;2;"Ing. Pavol Vnuk - NORPAL";"20260001";5.1.2026 0:00:00;1200,00 €;"EUR";1,00;1200,00;7.1.2026 0:00:00;600,00 €;1,00;600,00;0,00;"Áno"
 2020450613;2;"Ing. Pavol Vnuk - NORPAL";"20260001";5.1.2026 0:00:00;1200,00 €;"EUR";1,00;1200,00;12.1.2026 0:00:00;600,00 €;1,00;600,00;0,00;"Áno"
 2020450609;1;"Ing. Pavol Vnuk - NORPAL";"2026001";5.1.2026 0:00:00;500,00 €;"EUR";1,00;500,00;11.1.2026 0:00:00;500,00 €;1,00;500,00;0,00;"Áno"
