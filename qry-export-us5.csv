@@ -1,12 +1,12 @@
 ﻿Kategoria;ID_faktura;Pocet_Splatok;Klient;Typ;Variabilny_symbol;Datum_Vyst_Faktury;Suma_Faktury;Mena;Kurz_Faktury;Faktura_v_EUR;Datum_Uhrady;Suma_Tejto_Platby;Kurz_Platby;Platba_v_EUR;Kurzovy_Rozdiel;Auto_Sparovane;Poznamka
 Spárované;2020450613;2;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260001;5.1.2026;1 200,00;EUR;1;1200;7.1.2026;600,00;1;600;0;Áno;V poriadku
 Spárované;2020450613;2;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260001;5.1.2026;1 200,00;EUR;1;1200;12.1.2026;600,00;1;600;0;Áno;V poriadku
-Spárované;2020450610;2;Alza.cz a.s.;Dodávateľská (Náklad);9988413;5.1.2026;2 500,00;CZK;24,195;103,33;26.1.2026;1 250,00;24,251;51,54;0,12;Áno;V poriadku
+Spárované;2020450610;2;Alza.cz a.s.;Odberateľská (Výnos);9988413;5.1.2026;2 500,00;CZK;24,195;103,33;26.1.2026;1 250,00;24,251;51,54;-0,12;Áno;V poriadku
 Spárované;2020450612;1;KROS a.s.;Dodávateľská (Náklad);2026010001;5.1.2026;45,90;EUR;1;45,9;7.1.2026;-45,90;1;-45,9;0;Áno;V poriadku
 Spárované;2020450609;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);2026001;5.1.2026;500,00;EUR;1;500;11.1.2026;500,00;1;500;0;Áno;V poriadku
 Spárované;2020450617;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260003;6.1.2026;400,00;EUR;1;400;17.1.2026;400,00;1;400;0;Áno;V poriadku
 Spárované;2020450618;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260004;6.1.2026;1 200,00;EUR;1;1200;11.1.2026;1 200,00;1;1200;0;Áno;V poriadku
-Spárované;2020450614;1;Alza.cz a.s.;Dodávateľská (Náklad);1192026;6.1.2026;15 400,00;CZK;24,195;636,5;15.1.2026;15 400,00;24,278;634,32;2,18;Áno;V poriadku
+Spárované;2020450614;1;Alza.cz a.s.;Odberateľská (Výnos);1192026;6.1.2026;15 400,00;CZK;24,195;636,5;15.1.2026;15 400,00;24,278;634,32;-2,18;Áno;V poriadku
 Spárované;2020450615;2;KROS a.s.;Dodávateľská (Náklad);2026010002;6.1.2026;45,90;EUR;1;45,9;10.1.2026;-22,95;1;-22,95;0;Áno;V poriadku
 Spárované;2020450615;2;KROS a.s.;Dodávateľská (Náklad);2026010002;6.1.2026;45,90;EUR;1;45,9;16.1.2026;-22,95;1;-22,95;0;Áno;V poriadku
 Spárované;2020450623;1;British Airways;Odberateľská (Výnos);20260008;7.1.2026;1 100,00;GBP;0,8664;1269,62;13.1.2026;1 100,00;0,866;1270,21;0,59;Áno;V poriadku
@@ -16,16 +16,16 @@ Spárované;2020450624;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos)
 Spárované;2020450619;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260005;7.1.2026;650,00;EUR;1;650;15.1.2026;650,00;1;650;0;Áno;V poriadku
 Spárované;2020450621;2;Flux a.s.;Odberateľská (Výnos);20260006;7.1.2026;2 100,00;EUR;1;2100;13.1.2026;1 050,00;1;1050;0;Áno;V poriadku
 Spárované;2020450621;2;Flux a.s.;Odberateľská (Výnos);20260006;7.1.2026;2 100,00;EUR;1;2100;19.1.2026;1 050,00;1;1050;0;Áno;V poriadku
-Spárované;2020450620;2;Alza.cz a.s.;Dodávateľská (Náklad);1292026;7.1.2026;8 900,00;CZK;24,29;366,41;29.1.2026;4 450,00;24,335;182,86;0,34;Áno;V poriadku
+Spárované;2020450620;2;Alza.cz a.s.;Odberateľská (Výnos);1292026;7.1.2026;8 900,00;CZK;24,29;366,41;29.1.2026;4 450,00;24,335;182,86;-0,34;Áno;V poriadku
 Spárované;2020450628;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260027;8.1.2026;350,00;EUR;1;350;13.1.2026;350,00;1;350;0;Áno;V poriadku
-Spárované;2020450627;1;Alza.cz a.s.;Dodávateľská (Náklad);1182026;8.1.2026;4 500,00;CZK;24,262;185,48;17.1.2026;4 500,00;24,286;185,29;0,18;Áno;V poriadku
+Spárované;2020450627;1;Alza.cz a.s.;Odberateľská (Výnos);1182026;8.1.2026;4 500,00;CZK;24,262;185,48;17.1.2026;4 500,00;24,286;185,29;-0,18;Áno;V poriadku
 Spárované;2020450626;2;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260026;8.1.2026;1 200,00;EUR;1;1200;11.1.2026;240,00;1;240;0;Áno;V poriadku
 Spárované;2020450626;2;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260026;8.1.2026;1 200,00;EUR;1;1200;16.1.2026;240,00;1;240;0;Áno;V poriadku
 Spárované;2020450630;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260029;9.1.2026;650,00;EUR;1;650;15.1.2026;650,00;1;650;0;Áno;V poriadku
 Spárované;2020450631;1;KROS a.s.;Dodávateľská (Náklad);2026010004;9.1.2026;45,90;EUR;1;45,9;20.1.2026;-45,90;1;-45,9;0;Áno;V poriadku
 Spárované;2020450629;1;British Airways;Odberateľská (Výnos);20260028;9.1.2026;850,00;GBP;0,8677;979,6;16.1.2026;850,00;0,867;980,39;0,79;Áno;V poriadku
 Spárované;2020450634;1;Flux a.s.;Odberateľská (Výnos);20260031;12.1.2026;2 100,00;EUR;1;2100;14.1.2026;2 100,00;1;2100;0;Áno;V poriadku
-Spárované;2020450633;1;Alza.cz a.s.;Dodávateľská (Náklad);1122026;12.1.2026;3 200,00;CZK;24,288;131,75;26.1.2026;3 200,00;24,251;131,95;-0,2;Áno;V poriadku
+Spárované;2020450633;1;Alza.cz a.s.;Odberateľská (Výnos);1122026;12.1.2026;3 200,00;CZK;24,288;131,75;26.1.2026;3 200,00;24,251;131,95;0,2;Áno;V poriadku
 Spárované;2020450632;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260030;12.1.2026;1 200,00;EUR;1;1200;15.1.2026;1 200,00;1;1200;0;Áno;V poriadku
 Spárované;2020450636;1;British Airways;Odberateľská (Výnos);20260033;13.1.2026;450,00;GBP;0,866;519,63;21.1.2026;450,00;0,8744;514,64;-4,99;Áno;V poriadku
 Spárované;2020450635;2;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260032;13.1.2026;350,00;EUR;1;350;17.1.2026;175,00;1;175;0;Áno;V poriadku
@@ -34,81 +34,97 @@ Spárované;2020450638;2;KROS a.s.;Dodávateľská (Náklad);2026010005;14.1.202
 Spárované;2020450638;2;KROS a.s.;Dodávateľská (Náklad);2026010005;14.1.2026;120,00;EUR;1;120;31.1.2026;-24,00;1;-24;0;Áno;V poriadku
 Spárované;2020450637;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260034;14.1.2026;900,00;EUR;1;900;21.1.2026;900,00;1;900;0;Áno;V poriadku
 Spárované;2020450639;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260035;15.1.2026;1 200,00;EUR;1;1200;17.1.2026;1 200,00;1;1200;0;Áno;V poriadku
-Spárované;2020450640;1;Alza.cz a.s.;Dodávateľská (Náklad);1152026;15.1.2026;1 500,00;CZK;24,278;61,78;17.1.2026;1 500,00;24,286;61,76;0,02;Áno;V poriadku
+Spárované;2020450640;1;Alza.cz a.s.;Odberateľská (Výnos);1152026;15.1.2026;1 500,00;CZK;24,278;61,78;17.1.2026;1 500,00;24,286;61,76;-0,02;Áno;V poriadku
 Spárované;2020450641;2;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260036;16.1.2026;300,00;EUR;1;300;18.1.2026;60,00;1;60;0;Áno;V poriadku
 Spárované;2020450641;2;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260036;16.1.2026;300,00;EUR;1;300;26.1.2026;60,00;1;60;0;Áno;V poriadku
 Spárované;2020450864;2;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260120193;20.1.2026;823,63;EUR;1;823,63;26.1.2026;411,82;1;411,82;0;Áno;V poriadku
 Spárované;2020450865;1;Flux a.s.;Odberateľská (Výnos);20260120194;20.1.2026;1 509,87;EUR;1;1509,87;22.1.2026;1 509,87;1;1509,87;0;Áno;V poriadku
-Spárované;2020450863;1;Alza.cz a.s.;Dodávateľská (Náklad);20260120192;20.1.2026;415,07;CZK;24,333;17,06;25.1.2026;415,07;24,31;17,07;-0,02;Áno;V poriadku
+Spárované;2020450863;1;Alza.cz a.s.;Odberateľská (Výnos);20260120192;20.1.2026;415,07;CZK;24,333;17,06;25.1.2026;415,07;24,31;17,07;0,02;Áno;V poriadku
 Spárované;2020450866;2;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260121195;21.1.2026;1 018,43;EUR;1;1018,43;25.1.2026;203,69;1;203,69;0;Áno;V poriadku
+Spárované;2020450963;1;Alza.cz a.s.;Odberateľská (Výnos);20260121004;21.1.2026;1 300,34;CZK;24,356;53,39;30.1.2026;1 300,34;24,325;53,46;0,07;Áno;V poriadku
 Spárované;2020450868;1;Flux a.s.;Odberateľská (Výnos);20260121197;21.1.2026;128,68;EUR;1;128,68;22.1.2026;128,68;1;128,68;0;Áno;V poriadku
+Spárované;2020450675;1;Alza.cz a.s.;Odberateľská (Výnos);20260121004;21.1.2026;783,87;CZK;24,356;32,18;28.1.2026;783,87;24,294;32,27;0,08;Áno;V poriadku
 Spárované;2020450867;2;KROS a.s.;Dodávateľská (Náklad);2026010006;21.1.2026;337,04;EUR;1;337,04;24.1.2026;-168,52;1;-168,52;0;Áno;V poriadku
 Spárované;2020450867;2;KROS a.s.;Dodávateľská (Náklad);2026010006;21.1.2026;337,04;EUR;1;337,04;30.1.2026;-168,52;1;-168,52;0;Áno;V poriadku
 Spárované;2020450679;2;KROS a.s.;Dodávateľská (Náklad);2026010007;22.1.2026;259,54;EUR;1;259,54;24.1.2026;-51,91;1;-51,91;0;Áno;V poriadku
 Spárované;2020450871;1;KROS a.s.;Dodávateľská (Náklad);2026010008;22.1.2026;234,22;EUR;1;234,22;31.1.2026;-234,22;1;-234,22;0;Áno;V poriadku
 Spárované;2020450967;1;KROS a.s.;Dodávateľská (Náklad);2026010009;22.1.2026;518,94;EUR;1;518,94;23.1.2026;-518,94;1;-518,94;0;Áno;V poriadku
 Spárované;2020450873;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260123202;23.1.2026;1 468,48;EUR;1;1468,48;30.1.2026;1 468,48;1;1468,48;0;Áno;V poriadku
+Spárované;2020450969;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260123010;23.1.2026;296,23;EUR;1;296,23;27.1.2026;296,23;1;296,23;0;Áno;V poriadku
 Spárované;2020450874;1;Flux a.s.;Odberateľská (Výnos);20260123203;23.1.2026;1 129,30;EUR;1;1129,3;24.1.2026;1 129,30;1;1129,3;0;Áno;V poriadku
+Spárované;2020450682;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260123011;23.1.2026;537,11;EUR;1;537,11;30.1.2026;537,11;1;537,11;0;Áno;V poriadku
 Spárované;2020450875;2;KROS a.s.;Dodávateľská (Náklad);2026010011;26.1.2026;1 185,47;EUR;1;1185,47;31.1.2026;-237,09;1;-237,09;0;Áno;V poriadku
 Spárované;2020450683;1;KROS a.s.;Dodávateľská (Náklad);2026010010;26.1.2026;191,63;EUR;1;191,63;30.1.2026;-191,63;1;-191,63;0;Áno;V poriadku
 Spárované;2020450877;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260126206;26.1.2026;839,13;EUR;1;839,13;29.1.2026;839,13;1;839,13;0;Áno;V poriadku
 Spárované;2020450878;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260127207;27.1.2026;652,17;EUR;1;652,17;29.1.2026;652,17;1;652,17;0;Áno;V poriadku
 Spárované;2020450880;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260127209;27.1.2026;1 067,58;EUR;1;1067,58;28.1.2026;1 067,58;1;1067,58;0;Áno;V poriadku
+Spárované;2020450978;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260128019;28.1.2026;251,39;EUR;1;251,39;29.1.2026;251,39;1;251,39;0;Áno;V poriadku
 Spárované;2020450884;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260129213;29.1.2026;644,81;EUR;1;644,81;31.1.2026;644,81;1;644,81;0;Áno;V poriadku
-Spárované;2020450610;2;Alza.cz a.s.;Dodávateľská (Náklad);9988413;5.1.2026;2 500,00;CZK;24,195;103,33;19.2.2026;1 250,00;24,245;51,56;0,11;Áno;V poriadku
+Spárované;2020450610;2;Alza.cz a.s.;Odberateľská (Výnos);9988413;5.1.2026;2 500,00;CZK;24,195;103,33;19.2.2026;1 250,00;24,245;51,56;-0,11;Áno;V poriadku
 Spárované;2020450611;2;British Airways;Odberateľská (Výnos);2026002;5.1.2026;150,00;GBP;0,8676;172,89;6.2.2026;75,00;0,8679;86,42;-0,03;Áno;V poriadku
 Spárované;2020450611;2;British Airways;Odberateľská (Výnos);2026002;5.1.2026;150,00;GBP;0,8676;172,89;27.2.2026;75,00;0,8763;85,59;-0,86;Áno;V poriadku
 Spárované;2020450616;2;British Airways;Odberateľská (Výnos);20260002;6.1.2026;850,00;GBP;0,8663;981,18;2.2.2026;425,00;0,8658;490,88;0,28;Áno;V poriadku
 Spárované;2020450616;2;British Airways;Odberateľská (Výnos);20260002;6.1.2026;850,00;GBP;0,8663;981,18;21.2.2026;425,00;0,8738;486,38;-4,21;Áno;V poriadku
-Spárované;2020450620;2;Alza.cz a.s.;Dodávateľská (Náklad);1292026;7.1.2026;8 900,00;CZK;24,29;366,41;22.2.2026;4 450,00;24,245;183,54;-0,34;Áno;V poriadku
+Spárované;2020450620;2;Alza.cz a.s.;Odberateľská (Výnos);1292026;7.1.2026;8 900,00;CZK;24,29;366,41;22.2.2026;4 450,00;24,245;183,54;0,34;Áno;V poriadku
 Spárované;2020450642;2;British Airways;Odberateľská (Výnos);20260037;16.1.2026;1 100,00;GBP;0,867;1268,74;18.2.2026;220,00;0,8724;252,18;-1,57;Áno;V poriadku
 Spárované;2020450864;2;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260120193;20.1.2026;823,63;EUR;1;823,63;2.2.2026;411,81;1;411,81;0;Áno;V poriadku
 Spárované;2020450866;2;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260121195;21.1.2026;1 018,43;EUR;1;1018,43;4.2.2026;203,69;1;203,69;0;Áno;V poriadku
+Spárované;2020450677;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260122006;22.1.2026;436,69;EUR;1;436,69;2.2.2026;436,69;1;436,69;0;Áno;V poriadku
 Spárované;2020450870;1;Flux a.s.;Odberateľská (Výnos);20260122199;22.1.2026;1 413,75;EUR;1;1413,75;4.2.2026;1 413,75;1;1413,75;0;Áno;V poriadku
 Spárované;2020450679;2;KROS a.s.;Dodávateľská (Náklad);2026010007;22.1.2026;259,54;EUR;1;259,54;7.2.2026;-51,91;1;-51,91;0;Áno;V poriadku
+Spárované;2020450965;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260122006;22.1.2026;1 114,66;EUR;1;1114,66;4.2.2026;1 114,66;1;1114,66;0;Áno;V poriadku
 Spárované;2020450869;1;British Airways;Odberateľská (Výnos);20260122198;22.1.2026;1 321,21;GBP;0,8722;1514,8;1.2.2026;1 321,21;0,8662;1525,29;10,49;Áno;V poriadku
 Spárované;2020450872;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260123201;23.1.2026;757,51;EUR;1;757,51;2.2.2026;757,51;1;757,51;0;Áno;V poriadku
 Spárované;2020450876;1;Flux a.s.;Odberateľská (Výnos);20260126205;26.1.2026;419,84;EUR;1;419,84;3.2.2026;419,84;1;419,84;0;Áno;V poriadku
 Spárované;2020450875;2;KROS a.s.;Dodávateľská (Náklad);2026010011;26.1.2026;1 185,47;EUR;1;1185,47;5.2.2026;-237,09;1;-237,09;0;Áno;V poriadku
+Spárované;2020450973;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260126014;26.1.2026;1 220,71;EUR;1;1220,71;6.2.2026;1 220,71;1;1220,71;0;Áno;V poriadku
 Spárované;2020450687;1;KROS a.s.;Dodávateľská (Náklad);2026010012;27.1.2026;838,67;EUR;1;838,67;7.2.2026;-838,67;1;-838,67;0;Áno;V poriadku
-Spárované;2020450975;1;Alza.cz a.s.;Dodávateľská (Náklad);20260127016;27.1.2026;1 497,97;CZK;24,267;61,73;4.2.2026;1 497,97;24,357;61,5;0,23;Áno;V poriadku
+Spárované;2020450975;1;Alza.cz a.s.;Odberateľská (Výnos);20260127016;27.1.2026;1 497,97;CZK;24,267;61,73;4.2.2026;1 497,97;24,357;61,5;-0,23;Áno;V poriadku
 Spárované;2020450879;1;KROS a.s.;Dodávateľská (Náklad);2026010013;27.1.2026;1 574,33;EUR;1;1574,33;9.2.2026;-1 574,33;1;-1574,33;0;Áno;V poriadku
 Spárované;2020450881;1;British Airways;Odberateľská (Výnos);20260128210;28.1.2026;500,30;GBP;0,8685;576,05;2.2.2026;500,30;0,8658;577,85;1,8;Áno;V poriadku
 Spárované;2020450882;2;British Airways;Odberateľská (Výnos);20260128211;28.1.2026;586,58;GBP;0,8685;675,39;18.2.2026;117,32;0,8724;134,48;-0,6;Áno;V poriadku
-Spárované;2020450883;2;Alza.cz a.s.;Dodávateľská (Náklad);20260128212;28.1.2026;839,05;CZK;24,294;34,54;22.2.2026;167,81;24,245;6,92;-0,01;Áno;V poriadku
+Spárované;2020450691;1;Alza.cz a.s.;Odberateľská (Výnos);20260128020;28.1.2026;513,91;CZK;24,294;21,15;3.2.2026;513,91;24,312;21,14;-0,02;Áno;V poriadku
+Spárované;2020450883;2;Alza.cz a.s.;Odberateľská (Výnos);20260128212;28.1.2026;839,05;CZK;24,294;34,54;22.2.2026;167,81;24,245;6,92;0,01;Áno;V poriadku
 Spárované;2020450886;1;British Airways;Odberateľská (Výnos);20260129215;29.1.2026;903,98;GBP;0,8662;1043,62;2.2.2026;903,98;0,8658;1044,1;0,48;Áno;V poriadku
 Spárované;2020450885;2;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260129214;29.1.2026;1 448,82;EUR;1;1448,82;4.2.2026;724,41;1;724,41;0;Áno;V poriadku
 Spárované;2020450885;2;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260129214;29.1.2026;1 448,82;EUR;1;1448,82;15.2.2026;724,41;1;724,41;0;Áno;V poriadku
+Spárované;2020450980;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260129021;29.1.2026;635,37;EUR;1;635,37;1.2.2026;635,37;1;635,37;0;Áno;V poriadku
 Spárované;2020450888;2;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260130217;30.1.2026;1 337,82;EUR;1;1337,82;4.2.2026;267,56;1;267,56;0;Áno;V poriadku
 Spárované;2020450888;2;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260130217;30.1.2026;1 337,82;EUR;1;1337,82;13.2.2026;267,56;1;267,56;0;Áno;V poriadku
 Spárované;2020450889;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260130218;30.1.2026;861,19;EUR;1;861,19;1.2.2026;861,19;1;861,19;0;Áno;V poriadku
 Spárované;2020450983;1;KROS a.s.;Dodávateľská (Náklad);2026010016;30.1.2026;113,20;EUR;1;113,2;13.2.2026;-113,20;1;-113,2;0;Áno;V poriadku
 Spárované;2020450887;1;KROS a.s.;Dodávateľská (Náklad);2026010015;30.1.2026;222,52;EUR;1;222,52;13.2.2026;-222,52;1;-222,52;0;Áno;V poriadku
+Spárované;2020450984;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260130025;30.1.2026;1 174,20;EUR;1;1174,2;5.2.2026;1 174,20;1;1174,2;0;Áno;V poriadku
 Spárované;2020450695;1;KROS a.s.;Dodávateľská (Náklad);2026010014;30.1.2026;835,25;EUR;1;835,25;13.2.2026;-835,25;1;-835,25;0;Áno;V poriadku
 Spárované;2020450699;2;KROS a.s.;Dodávateľská (Náklad);2026020002;2.2.2026;1 475,32;EUR;1;1475,32;7.2.2026;-295,06;1;-295,06;0;Áno;V poriadku
 Spárované;2020450699;2;KROS a.s.;Dodávateľská (Náklad);2026020002;2.2.2026;1 475,32;EUR;1;1475,32;17.2.2026;-295,06;1;-295,06;0;Áno;V poriadku
 Spárované;2020450892;2;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260202221;2.2.2026;1 325,07;EUR;1;1325,07;6.2.2026;265,01;1;265,01;0;Áno;V poriadku
 Spárované;2020450892;2;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260202221;2.2.2026;1 325,07;EUR;1;1325,07;18.2.2026;265,01;1;265,01;0;Áno;V poriadku
-Spárované;2020450645;1;Alza.cz a.s.;Dodávateľská (Náklad);2022026;2.2.2026;5 200,00;CZK;24,305;213,95;9.2.2026;5 200,00;24,217;214,73;-0,78;Áno;V poriadku
+Spárované;2020450645;1;Alza.cz a.s.;Odberateľská (Výnos);2022026;2.2.2026;5 200,00;CZK;24,305;213,95;9.2.2026;5 200,00;24,217;214,73;0,78;Áno;V poriadku
 Spárované;2020450987;1;KROS a.s.;Dodávateľská (Náklad);2026020003;2.2.2026;1 269,62;EUR;1;1269,62;11.2.2026;-1 269,62;1;-1269,62;0;Áno;V poriadku
 Spárované;2020450890;2;Flux a.s.;Odberateľská (Výnos);20260202219;2.2.2026;193,00;EUR;1;193;8.2.2026;96,50;1;96,5;0;Áno;V poriadku
 Spárované;2020450890;2;Flux a.s.;Odberateľská (Výnos);20260202219;2.2.2026;193,00;EUR;1;193;19.2.2026;96,50;1;96,5;0;Áno;V poriadku
 Spárované;2020450643;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260038;2.2.2026;1 200,00;EUR;1;1200;7.2.2026;1 200,00;1;1200;0;Áno;V poriadku
 Spárované;2020450644;2;KROS a.s.;Dodávateľská (Náklad);2026020001;2.2.2026;45,90;EUR;1;45,9;7.2.2026;-9,18;1;-9,18;0;Áno;V poriadku
 Spárované;2020450644;2;KROS a.s.;Dodávateľská (Náklad);2026020001;2.2.2026;45,90;EUR;1;45,9;12.2.2026;-9,18;1;-9,18;0;Áno;V poriadku
+Spárované;2020450988;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260202029;2.2.2026;620,56;EUR;1;620,56;13.2.2026;620,56;1;620,56;0;Áno;V poriadku
 Spárované;2020450703;1;KROS a.s.;Dodávateľská (Náklad);2026020004;3.2.2026;911,39;EUR;1;911,39;8.2.2026;-911,39;1;-911,39;0;Áno;V poriadku
 Spárované;2020450894;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260203223;3.2.2026;909,43;EUR;1;909,43;6.2.2026;909,43;1;909,43;0;Áno;V poriadku
+Spárované;2020450989;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260203030;3.2.2026;635,85;EUR;1;635,85;8.2.2026;635,85;1;635,85;0;Áno;V poriadku
 Spárované;2020450893;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260203222;3.2.2026;343,63;EUR;1;343,63;9.2.2026;343,63;1;343,63;0;Áno;V poriadku
 Spárované;2020450895;1;KROS a.s.;Dodávateľská (Náklad);2026020005;3.2.2026;1 340,90;EUR;1;1340,9;10.2.2026;-1 340,90;1;-1340,9;0;Áno;V poriadku
+Spárované;2020450701;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260203030;3.2.2026;1 453,49;EUR;1;1453,49;6.2.2026;1 453,49;1;1453,49;0;Áno;V poriadku
 Spárované;2020450991;1;KROS a.s.;Dodávateľská (Náklad);2026020006;3.2.2026;1 526,74;EUR;1;1526,74;9.2.2026;-1 526,74;1;-1526,74;0;Áno;V poriadku
+Spárované;2020450992;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260204033;4.2.2026;1 020,10;EUR;1;1020,1;7.2.2026;1 020,10;1;1020,1;0;Áno;V poriadku
 Spárované;2020450898;1;British Airways;Odberateľská (Výnos);20260204227;4.2.2026;1 126,29;GBP;0,8616;1307,21;9.2.2026;1 126,29;0,8701;1294,44;-12,77;Áno;V poriadku
 Spárované;2020450896;2;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260204225;4.2.2026;1 527,22;EUR;1;1527,22;7.2.2026;763,61;1;763,61;0;Áno;V poriadku
 Spárované;2020450896;2;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260204225;4.2.2026;1 527,22;EUR;1;1527,22;13.2.2026;763,61;1;763,61;0;Áno;V poriadku
+Spárované;2020450704;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260204033;4.2.2026;1 435,08;EUR;1;1435,08;10.2.2026;1 435,08;1;1435,08;0;Áno;V poriadku
 Spárované;2020450647;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260040;4.2.2026;350,00;EUR;1;350;17.2.2026;350,00;1;350;0;Áno;V poriadku
 Spárované;2020450646;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260039;4.2.2026;450,00;EUR;1;450;16.2.2026;450,00;1;450;0;Áno;V poriadku
 Spárované;2020450897;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260204226;4.2.2026;682,01;EUR;1;682,01;17.2.2026;682,01;1;682,01;0;Áno;V poriadku
 Spárované;2020450901;1;Flux a.s.;Odberateľská (Výnos);20260205230;5.2.2026;1 091,92;EUR;1;1091,92;11.2.2026;1 091,92;1;1091,92;0;Áno;V poriadku
-Spárované;2020450899;2;Alza.cz a.s.;Dodávateľská (Náklad);20260205228;5.2.2026;335,07;CZK;24,31;13,78;27.2.2026;167,54;24,244;6,91;-0,02;Áno;V poriadku
+Spárované;2020450899;2;Alza.cz a.s.;Odberateľská (Výnos);20260205228;5.2.2026;335,07;CZK;24,31;13,78;27.2.2026;167,54;24,244;6,91;0,02;Áno;V poriadku
 Spárované;2020450707;2;KROS a.s.;Dodávateľská (Náklad);2026020007;5.2.2026;175,46;EUR;1;175,46;10.2.2026;-35,09;1;-35,09;0;Áno;V poriadku
 Spárované;2020450707;2;KROS a.s.;Dodávateľská (Náklad);2026020007;5.2.2026;175,46;EUR;1;175,46;16.2.2026;-35,09;1;-35,09;0;Áno;V poriadku
 Spárované;2020450900;2;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260205229;5.2.2026;357,11;EUR;1;357,11;7.2.2026;71,42;1;71,42;0;Áno;V poriadku
@@ -126,15 +142,18 @@ Spárované;2020450999;2;KROS a.s.;Dodávateľská (Náklad);2026020010;6.2.2026
 Spárované;2020450906;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260209235;9.2.2026;439,18;EUR;1;439,18;14.2.2026;439,18;1;439,18;0;Áno;V poriadku
 Spárované;2020450715;1;KROS a.s.;Dodávateľská (Náklad);2026020011;9.2.2026;1 588,96;EUR;1;1588,96;14.2.2026;-1 588,96;1;-1588,96;0;Áno;V poriadku
 Spárované;2020450905;1;British Airways;Odberateľská (Výnos);20260209234;9.2.2026;1 468,62;GBP;0,8701;1687,87;10.2.2026;1 468,62;0,8695;1689,04;1,16;Áno;V poriadku
+Spárované;2020451001;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260209042;9.2.2026;773,91;EUR;1;773,91;13.2.2026;773,91;1;773,91;0;Áno;V poriadku
+Spárované;2020450717;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260210046;10.2.2026;873,39;EUR;1;873,39;17.2.2026;873,39;1;873,39;0;Áno;V poriadku
 Spárované;2020450650;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260043;10.2.2026;1 200,00;EUR;1;1200;11.2.2026;1 200,00;1;1200;0;Áno;V poriadku
 Spárované;2020450909;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260210238;10.2.2026;137,06;EUR;1;137,06;17.2.2026;137,06;1;137,06;0;Áno;V poriadku
-Spárované;2020450651;1;Alza.cz a.s.;Dodávateľská (Náklad);2102026;10.2.2026;3 300,00;CZK;24,257;136,04;18.2.2026;3 300,00;24,256;136,05;-0,01;Áno;V poriadku
+Spárované;2020450651;1;Alza.cz a.s.;Odberateľská (Výnos);2102026;10.2.2026;3 300,00;CZK;24,257;136,04;18.2.2026;3 300,00;24,256;136,05;0,01;Áno;V poriadku
 Spárované;2020450910;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260210239;10.2.2026;1 517,16;EUR;1;1517,16;14.2.2026;1 517,16;1;1517,16;0;Áno;V poriadku
 Spárované;2020450908;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260210237;10.2.2026;512,41;EUR;1;512,41;15.2.2026;512,41;1;512,41;0;Áno;V poriadku
+Spárované;2020451009;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260211050;11.2.2026;471,87;EUR;1;471,87;19.2.2026;471,87;1;471,87;0;Áno;V poriadku
 Spárované;2020450719;2;KROS a.s.;Dodávateľská (Náklad);2026020012;11.2.2026;1 325,79;EUR;1;1325,79;14.2.2026;-662,90;1;-662,9;0;Áno;V poriadku
 Spárované;2020450719;2;KROS a.s.;Dodávateľská (Náklad);2026020012;11.2.2026;1 325,79;EUR;1;1325,79;26.2.2026;-662,89;1;-662,89;0;Áno;V poriadku
 Spárované;2020450913;2;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260211242;11.2.2026;601,88;EUR;1;601,88;15.2.2026;120,38;1;120,38;0;Áno;V poriadku
-Spárované;2020451007;1;Alza.cz a.s.;Dodávateľská (Náklad);20260211048;11.2.2026;772,19;CZK;24,245;31,85;14.2.2026;772,19;24,263;31,83;0,02;Áno;V poriadku
+Spárované;2020451007;1;Alza.cz a.s.;Odberateľská (Výnos);20260211048;11.2.2026;772,19;CZK;24,245;31,85;14.2.2026;772,19;24,263;31,83;-0,02;Áno;V poriadku
 Spárované;2020450911;2;KROS a.s.;Dodávateľská (Náklad);2026020013;11.2.2026;511,64;EUR;1;511,64;17.2.2026;-102,33;1;-102,33;0;Áno;V poriadku
 Spárované;2020450911;2;KROS a.s.;Dodávateľská (Náklad);2026020013;11.2.2026;511,64;EUR;1;511,64;22.2.2026;-102,33;1;-102,33;0;Áno;V poriadku
 Spárované;2020450916;1;Flux a.s.;Odberateľská (Výnos);20260212245;12.2.2026;437,45;EUR;1;437,45;24.2.2026;437,45;1;437,45;0;Áno;V poriadku
@@ -146,7 +165,7 @@ Spárované;2020450915;1;KROS a.s.;Dodávateľská (Náklad);2026020014;12.2.202
 Spárované;2020450917;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260213246;13.2.2026;297,41;EUR;1;297,41;25.2.2026;297,41;1;297,41;0;Áno;V poriadku
 Spárované;2020450726;1;Flux a.s.;Odberateľská (Výnos);20260213055;13.2.2026;420,92;EUR;1;420,92;22.2.2026;420,92;1;420,92;0;Áno;V poriadku
 Spárované;2020450725;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260213054;13.2.2026;636,03;EUR;1;636,03;18.2.2026;636,03;1;636,03;0;Áno;V poriadku
-Spárované;2020450919;1;Alza.cz a.s.;Dodávateľská (Náklad);20260213248;13.2.2026;263,23;CZK;24,263;10,85;27.2.2026;263,23;24,244;10,86;-0,01;Áno;V poriadku
+Spárované;2020450919;1;Alza.cz a.s.;Odberateľská (Výnos);20260213248;13.2.2026;263,23;CZK;24,263;10,85;27.2.2026;263,23;24,244;10,86;0,01;Áno;V poriadku
 Spárované;2020450920;1;British Airways;Odberateľská (Výnos);20260216249;16.2.2026;825,22;GBP;0,869;949,62;23.2.2026;825,22;0,8734;944,84;-4,78;Áno;V poriadku
 Spárované;2020450730;1;Flux a.s.;Odberateľská (Výnos);20260216059;16.2.2026;658,97;EUR;1;658,97;22.2.2026;658,97;1;658,97;0;Áno;V poriadku
 Spárované;2020450921;1;British Airways;Odberateľská (Výnos);20260216250;16.2.2026;337,65;GBP;0,869;388,55;28.2.2026;337,65;0,8763;385,31;-3,24;Áno;V poriadku
@@ -177,22 +196,22 @@ Spárované;2020450938;2;Lucia Prekladová - LINGUA;Odberateľská (Výnos);2026
 Spárované;2020450749;2;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260225078;25.2.2026;580,01;EUR;1;580,01;28.2.2026;116,00;1;116;0;Áno;V poriadku
 Spárované;2020450945;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260226274;26.2.2026;1 343,60;EUR;1;1343,6;28.2.2026;1 343,60;1;1343,6;0;Áno;V poriadku
 Spárované;2020450642;2;British Airways;Odberateľská (Výnos);20260037;16.1.2026;1 100,00;GBP;0,867;1268,74;24.3.2026;220,00;0,8654;254,21;0,47;Áno;V poriadku
-Spárované;2020450971;1;Alza.cz a.s.;Dodávateľská (Náklad);20260126012;26.1.2026;1 248,63;CZK;24,251;51,49;16.3.2026;1 248,63;24,436;51,1;0,39;Áno;V poriadku
+Spárované;2020450971;1;Alza.cz a.s.;Odberateľská (Výnos);20260126012;26.1.2026;1 248,63;CZK;24,251;51,49;16.3.2026;1 248,63;24,436;51,1;-0,39;Áno;V poriadku
 Spárované;2020450882;2;British Airways;Odberateľská (Výnos);20260128211;28.1.2026;586,58;GBP;0,8685;675,39;17.3.2026;117,32;0,8643;135,74;0,66;Áno;V poriadku
-Spárované;2020450883;2;Alza.cz a.s.;Dodávateľská (Náklad);20260128212;28.1.2026;839,05;CZK;24,294;34,54;17.3.2026;167,81;24,437;6,87;0,04;Áno;V poriadku
-Spárované;2020450891;2;Alza.cz a.s.;Dodávateľská (Náklad);20260202220;2.2.2026;522,38;CZK;24,305;21,49;1.3.2026;261,19;24,244;10,77;-0,03;Áno;V poriadku
-Spárované;2020450891;2;Alza.cz a.s.;Dodávateľská (Náklad);20260202220;2.2.2026;522,38;CZK;24,305;21,49;20.3.2026;261,19;24,505;10,66;0,09;Áno;V poriadku
-Spárované;2020450899;2;Alza.cz a.s.;Dodávateľská (Náklad);20260205228;5.2.2026;335,07;CZK;24,31;13,78;16.3.2026;167,53;24,436;6,86;0,04;Áno;V poriadku
-Spárované;2020450995;1;Alza.cz a.s.;Dodávateľská (Náklad);20260205036;5.2.2026;1 166,54;CZK;24,31;47,99;12.3.2026;1 166,54;24,406;47,8;0,19;Áno;V poriadku
-Spárované;2020450907;1;Alza.cz a.s.;Dodávateľská (Náklad);20260209236;9.2.2026;751,74;CZK;24,217;31,04;23.3.2026;751,74;24,438;30,76;0,28;Áno;V poriadku
-Spárované;2020451003;2;Alza.cz a.s.;Dodávateľská (Náklad);20260209044;9.2.2026;495,57;CZK;24,217;20,46;1.3.2026;99,11;24,244;4,09;0;Áno;V poriadku
-Spárované;2020451003;2;Alza.cz a.s.;Dodávateľská (Náklad);20260209044;9.2.2026;495,57;CZK;24,217;20,46;30.3.2026;99,11;24,555;4,04;0,06;Áno;V poriadku
+Spárované;2020450883;2;Alza.cz a.s.;Odberateľská (Výnos);20260128212;28.1.2026;839,05;CZK;24,294;34,54;17.3.2026;167,81;24,437;6,87;-0,04;Áno;V poriadku
+Spárované;2020450891;2;Alza.cz a.s.;Odberateľská (Výnos);20260202220;2.2.2026;522,38;CZK;24,305;21,49;1.3.2026;261,19;24,244;10,77;0,03;Áno;V poriadku
+Spárované;2020450891;2;Alza.cz a.s.;Odberateľská (Výnos);20260202220;2.2.2026;522,38;CZK;24,305;21,49;20.3.2026;261,19;24,505;10,66;-0,09;Áno;V poriadku
+Spárované;2020450899;2;Alza.cz a.s.;Odberateľská (Výnos);20260205228;5.2.2026;335,07;CZK;24,31;13,78;16.3.2026;167,53;24,436;6,86;-0,04;Áno;V poriadku
+Spárované;2020450995;1;Alza.cz a.s.;Odberateľská (Výnos);20260205036;5.2.2026;1 166,54;CZK;24,31;47,99;12.3.2026;1 166,54;24,406;47,8;-0,19;Áno;V poriadku
+Spárované;2020450907;1;Alza.cz a.s.;Odberateľská (Výnos);20260209236;9.2.2026;751,74;CZK;24,217;31,04;23.3.2026;751,74;24,438;30,76;-0,28;Áno;V poriadku
+Spárované;2020451003;2;Alza.cz a.s.;Odberateľská (Výnos);20260209044;9.2.2026;495,57;CZK;24,217;20,46;1.3.2026;99,11;24,244;4,09;0;Áno;V poriadku
+Spárované;2020451003;2;Alza.cz a.s.;Odberateľská (Výnos);20260209044;9.2.2026;495,57;CZK;24,217;20,46;30.3.2026;99,11;24,555;4,04;-0,06;Áno;V poriadku
 Spárované;2020450913;2;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260211242;11.2.2026;601,88;EUR;1;601,88;1.3.2026;120,38;1;120,38;0;Áno;V poriadku
 Spárované;2020450912;2;British Airways;Odberateľská (Výnos);20260211241;11.2.2026;374,44;GBP;0,8699;430,44;16.3.2026;74,89;0,8641;86,67;0,58;Áno;V poriadku
-Spárované;2020450723;1;Alza.cz a.s.;Dodávateľská (Náklad);20260212052;12.2.2026;565,41;CZK;24,245;23,32;21.3.2026;565,41;24,505;23,07;0,25;Áno;V poriadku
+Spárované;2020450723;1;Alza.cz a.s.;Odberateľská (Výnos);20260212052;12.2.2026;565,41;CZK;24,245;23,32;21.3.2026;565,41;24,505;23,07;-0,25;Áno;V poriadku
 Spárované;2020450918;1;British Airways;Odberateľská (Výnos);20260213247;13.2.2026;1 474,91;GBP;0,8716;1692,19;29.3.2026;1 474,91;0,8672;1700,77;8,59;Áno;V poriadku
-Spárované;2020450727;2;Alza.cz a.s.;Dodávateľská (Náklad);20260213056;13.2.2026;363,26;CZK;24,263;14,97;9.3.2026;181,63;24,399;7,44;0,04;Áno;V poriadku
-Spárované;2020450727;2;Alza.cz a.s.;Dodávateľská (Náklad);20260213056;13.2.2026;363,26;CZK;24,263;14,97;28.3.2026;181,63;24,542;7,4;0,09;Áno;V poriadku
+Spárované;2020450727;2;Alza.cz a.s.;Odberateľská (Výnos);20260213056;13.2.2026;363,26;CZK;24,263;14,97;9.3.2026;181,63;24,399;7,44;-0,04;Áno;V poriadku
+Spárované;2020450727;2;Alza.cz a.s.;Odberateľská (Výnos);20260213056;13.2.2026;363,26;CZK;24,263;14,97;28.3.2026;181,63;24,542;7,4;-0,09;Áno;V poriadku
 Spárované;2020450732;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260217061;17.2.2026;608,09;EUR;1;608,09;2.3.2026;608,09;1;608,09;0;Áno;V poriadku
 Spárované;2020450924;2;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260217253;17.2.2026;653,72;EUR;1;653,72;3.3.2026;130,74;1;130,74;0;Áno;V poriadku
 Spárované;2020450925;1;British Airways;Odberateľská (Výnos);20260217254;17.2.2026;266,32;GBP;0,8733;304,96;19.3.2026;266,32;0,8639;308,28;3,33;Áno;V poriadku
@@ -200,21 +219,21 @@ Spárované;2020450733;2;British Airways;Odberateľská (Výnos);20260217062;17.
 Spárované;2020450737;1;British Airways;Odberateľská (Výnos);20260219066;19.2.2026;347,68;GBP;0,8738;397,89;2.3.2026;347,68;0,8739;397,85;-0,05;Áno;V poriadku
 Spárované;2020450738;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260219067;19.2.2026;824,32;EUR;1;824,32;2.3.2026;824,32;1;824,32;0;Áno;V poriadku
 Spárované;2020450931;2;KROS a.s.;Dodávateľská (Náklad);2026020019;19.2.2026;996,69;EUR;1;996,69;1.3.2026;-199,34;1;-199,34;0;Áno;V poriadku
-Spárované;2020450739;1;Alza.cz a.s.;Dodávateľská (Náklad);20260219068;19.2.2026;980,63;CZK;24,245;40,45;3.3.2026;980,63;24,378;40,23;0,22;Áno;V poriadku
+Spárované;2020450739;1;Alza.cz a.s.;Odberateľská (Výnos);20260219068;19.2.2026;980,63;CZK;24,245;40,45;3.3.2026;980,63;24,378;40,23;-0,22;Áno;V poriadku
 Spárované;2020450741;2;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260220070;20.2.2026;1 233,48;EUR;1;1233,48;11.3.2026;246,70;1;246,7;0;Áno;V poriadku
 Spárované;2020450742;2;Flux a.s.;Odberateľská (Výnos);20260220071;20.2.2026;389,80;EUR;1;389,8;11.3.2026;194,90;1;194,9;0;Áno;V poriadku
 Spárované;2020450934;1;Flux a.s.;Odberateľská (Výnos);20260220263;20.2.2026;399,35;EUR;1;399,35;6.3.2026;399,35;1;399,35;0;Áno;V poriadku
 Spárované;2020450937;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260223266;23.2.2026;515,15;EUR;1;515,15;2.3.2026;515,15;1;515,15;0;Áno;V poriadku
 Spárované;2020450745;1;Flux a.s.;Odberateľská (Výnos);20260223074;23.2.2026;931,78;EUR;1;931,78;5.3.2026;931,78;1;931,78;0;Áno;V poriadku
-Spárované;2020450935;1;Alza.cz a.s.;Dodávateľská (Náklad);20260223264;23.2.2026;409,37;CZK;24,223;16,9;27.3.2026;409,37;24,542;16,68;0,22;Áno;V poriadku
+Spárované;2020450935;1;Alza.cz a.s.;Odberateľská (Výnos);20260223264;23.2.2026;409,37;CZK;24,223;16,9;27.3.2026;409,37;24,542;16,68;-0,22;Áno;V poriadku
 Spárované;2020450744;1;Flux a.s.;Odberateľská (Výnos);20260223073;23.2.2026;1 348,92;EUR;1;1348,92;5.3.2026;1 348,92;1;1348,92;0;Áno;V poriadku
 Spárované;2020450743;1;KROS a.s.;Dodávateľská (Náklad);2026020020;23.2.2026;909,30;EUR;1;909,3;8.3.2026;-909,30;1;-909,3;0;Áno;V poriadku
 Spárované;2020450748;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260224077;24.2.2026;708,76;EUR;1;708,76;7.3.2026;708,76;1;708,76;0;Áno;V poriadku
 Spárované;2020450746;2;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260224075;24.2.2026;564,58;EUR;1;564,58;1.3.2026;112,92;1;112,92;0;Áno;V poriadku
 Spárované;2020450746;2;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260224075;24.2.2026;564,58;EUR;1;564,58;7.3.2026;112,92;1;112,92;0;Áno;V poriadku
 Spárované;2020450940;2;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260224269;24.2.2026;1 420,89;EUR;1;1420,89;9.3.2026;710,45;1;710,45;0;Áno;V poriadku
-Spárované;2020450939;2;Alza.cz a.s.;Dodávateľská (Náklad);20260224268;24.2.2026;1 075,34;CZK;24,225;44,39;24.3.2026;537,67;24,477;21,97;0,23;Áno;V poriadku
-Spárované;2020450747;1;Alza.cz a.s.;Dodávateľská (Náklad);20260224076;24.2.2026;1 493,61;CZK;24,225;61,66;7.3.2026;1 493,61;24,419;61,17;0,49;Áno;V poriadku
+Spárované;2020450939;2;Alza.cz a.s.;Odberateľská (Výnos);20260224268;24.2.2026;1 075,34;CZK;24,225;44,39;24.3.2026;537,67;24,477;21,97;-0,23;Áno;V poriadku
+Spárované;2020450747;1;Alza.cz a.s.;Odberateľská (Výnos);20260224076;24.2.2026;1 493,61;CZK;24,225;61,66;7.3.2026;1 493,61;24,419;61,17;-0,49;Áno;V poriadku
 Spárované;2020450938;2;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260224267;24.2.2026;166,55;EUR;1;166,55;10.3.2026;83,27;1;83,27;0;Áno;V poriadku
 Spárované;2020450942;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260225271;25.2.2026;971,51;EUR;1;971,51;5.3.2026;971,51;1;971,51;0;Áno;V poriadku
 Spárované;2020450751;2;KROS a.s.;Dodávateľská (Náklad);2026020021;25.2.2026;367,10;EUR;1;367,1;2.3.2026;-183,55;1;-183,55;0;Áno;V poriadku
@@ -228,7 +247,7 @@ Spárované;2020450752;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);202602
 Spárované;2020450946;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260226275;26.2.2026;793,50;EUR;1;793,5;5.3.2026;793,50;1;793,5;0;Áno;V poriadku
 Spárované;2020450754;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260226083;26.2.2026;307,50;EUR;1;307,5;1.3.2026;307,50;1;307,5;0;Áno;V poriadku
 Spárované;2020450944;2;British Airways;Odberateľská (Výnos);20260226273;26.2.2026;919,09;GBP;0,8719;1054,12;26.3.2026;183,82;0,8652;212,47;1,64;Áno;V poriadku
-Spárované;2020450755;1;Alza.cz a.s.;Dodávateľská (Náklad);20260227084;27.2.2026;717,99;CZK;24,244;29,62;10.3.2026;717,99;24,38;29,45;0,17;Áno;V poriadku
+Spárované;2020450755;1;Alza.cz a.s.;Odberateľská (Výnos);20260227084;27.2.2026;717,99;CZK;24,244;29,62;10.3.2026;717,99;24,38;29,45;-0,17;Áno;V poriadku
 Spárované;2020450757;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260227086;27.2.2026;924,56;EUR;1;924,56;10.3.2026;924,56;1;924,56;0;Áno;V poriadku
 Spárované;2020450947;2;KROS a.s.;Dodávateľská (Náklad);2026020023;27.2.2026;756,02;EUR;1;756,02;2.3.2026;-151,20;1;-151,2;0;Áno;V poriadku
 Spárované;2020450947;2;KROS a.s.;Dodávateľská (Náklad);2026020023;27.2.2026;756,02;EUR;1;756,02;9.3.2026;-151,20;1;-151,2;0;Áno;V poriadku
@@ -245,7 +264,7 @@ Spárované;2020450952;2;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);202603
 Spárované;2020450951;2;KROS a.s.;Dodávateľská (Náklad);2026030001;2.3.2026;1 201,88;EUR;1;1201,88;4.3.2026;-600,94;1;-600,94;0;Áno;V poriadku
 Spárované;2020450951;2;KROS a.s.;Dodávateľská (Náklad);2026030001;2.3.2026;1 201,88;EUR;1;1201,88;9.3.2026;-600,94;1;-600,94;0;Áno;V poriadku
 Spárované;2020450954;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260303283;3.3.2026;491,47;EUR;1;491,47;13.3.2026;491,47;1;491,47;0;Áno;V poriadku
-Spárované;2020450763;1;Alza.cz a.s.;Dodávateľská (Náklad);20260303092;3.3.2026;1 378,37;CZK;24,378;56,54;27.3.2026;275,67;24,542;11,23;0,08;Áno;V poriadku
+Spárované;2020450763;1;Alza.cz a.s.;Odberateľská (Výnos);20260303092;3.3.2026;1 378,37;CZK;24,378;56,54;27.3.2026;275,67;24,542;11,23;-0,08;Áno;V poriadku
 Spárované;2020450654;1;British Airways;Odberateľská (Výnos);20260045;3.3.2026;1 500,00;GBP;0,8717;1720,78;8.3.2026;1 500,00;0,8669;1730,24;9,47;Áno;V poriadku
 Spárované;2020450653;1;KROS a.s.;Dodávateľská (Náklad);2026030002;3.3.2026;120,00;EUR;1;120;5.3.2026;-120,00;1;-120;0;Áno;V poriadku
 Spárované;2020450762;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260303091;3.3.2026;855,81;EUR;1;855,81;6.3.2026;855,81;1;855,81;0;Áno;V poriadku
@@ -283,17 +302,17 @@ Spárované;2020450780;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);2026
 Spárované;2020450782;1;Flux a.s.;Odberateľská (Výnos);20260312111;12.3.2026;843,31;EUR;1;843,31;17.3.2026;843,31;1;843,31;0;Áno;V poriadku
 Spárované;2020450784;1;British Airways;Odberateľská (Výnos);20260312113;12.3.2026;823,76;GBP;0,8624;955,16;18.3.2026;823,76;0,8639;953,5;-1,66;Áno;V poriadku
 Spárované;2020450785;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260313114;13.3.2026;286,37;EUR;1;286,37;24.3.2026;286,37;1;286,37;0;Áno;V poriadku
-Spárované;2020450787;1;Alza.cz a.s.;Dodávateľská (Náklad);20260313116;13.3.2026;1 346,64;CZK;24,437;55,11;15.3.2026;1 346,64;24,437;55,11;0;Áno;V poriadku
+Spárované;2020450787;1;Alza.cz a.s.;Odberateľská (Výnos);20260313116;13.3.2026;1 346,64;CZK;24,437;55,11;15.3.2026;1 346,64;24,437;55,11;0;Áno;V poriadku
 Spárované;2020450786;1;Flux a.s.;Odberateľská (Výnos);20260313115;13.3.2026;1 485,43;EUR;1;1485,43;26.3.2026;1 485,43;1;1485,43;0;Áno;V poriadku
 Spárované;2020450790;1;British Airways;Odberateľská (Výnos);20260316119;16.3.2026;1 039,83;GBP;0,8641;1203,4;26.3.2026;1 039,83;0,8652;1201,91;-1,49;Áno;V poriadku
 Spárované;2020450658;1;Flux a.s.;Odberateľská (Výnos);20260048;16.3.2026;3 200,00;EUR;1;3200;18.3.2026;3 200,00;1;3200;0;Áno;V poriadku
-Spárované;2020450657;1;Alza.cz a.s.;Dodávateľská (Náklad);3162026;16.3.2026;8 500,00;CZK;24,436;347,85;18.3.2026;8 500,00;24,467;347,41;0,44;Áno;V poriadku
+Spárované;2020450657;1;Alza.cz a.s.;Odberateľská (Výnos);3162026;16.3.2026;8 500,00;CZK;24,436;347,85;18.3.2026;8 500,00;24,467;347,41;-0,44;Áno;V poriadku
 Spárované;2020450659;2;KROS a.s.;Dodávateľská (Náklad);2026030008;16.3.2026;45,90;EUR;1;45,9;22.3.2026;-9,18;1;-9,18;0;Áno;V poriadku
 Spárované;2020450659;2;KROS a.s.;Dodávateľská (Náklad);2026030008;16.3.2026;45,90;EUR;1;45,9;30.3.2026;-9,18;1;-9,18;0;Áno;V poriadku
 Spárované;2020450788;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260316117;16.3.2026;1 474,90;EUR;1;1474,9;25.3.2026;1 474,90;1;1474,9;0;Áno;V poriadku
 Spárované;2020450789;2;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260316118;16.3.2026;775,11;EUR;1;775,11;20.3.2026;387,56;1;387,56;0;Áno;V poriadku
 Spárované;2020450789;2;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260316118;16.3.2026;775,11;EUR;1;775,11;26.3.2026;387,55;1;387,55;0;Áno;V poriadku
-Spárované;2020450791;1;Alza.cz a.s.;Dodávateľská (Náklad);20260317120;17.3.2026;238,12;CZK;24,437;9,74;18.3.2026;238,12;24,467;9,73;0,01;Áno;V poriadku
+Spárované;2020450791;1;Alza.cz a.s.;Odberateľská (Výnos);20260317120;17.3.2026;238,12;CZK;24,437;9,74;18.3.2026;238,12;24,467;9,73;-0,01;Áno;V poriadku
 Spárované;2020450793;1;British Airways;Odberateľská (Výnos);20260317122;17.3.2026;1 585,13;GBP;0,8643;1834;24.3.2026;1 585,13;0,8654;1831,65;-2,35;Áno;V poriadku
 Spárované;2020450792;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260317121;17.3.2026;1 114,87;EUR;1;1114,87;21.3.2026;1 114,87;1;1114,87;0;Áno;V poriadku
 Spárované;2020450795;1;KROS a.s.;Dodávateľská (Náklad);2026030009;18.3.2026;497,14;EUR;1;497,14;30.3.2026;-497,14;1;-497,14;0;Áno;V poriadku
@@ -308,11 +327,11 @@ Spárované;2020450810;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);202603
 Spárované;2020450813;1;Flux a.s.;Odberateľská (Výnos);20260326142;26.3.2026;273,05;EUR;1;273,05;31.3.2026;273,05;1;273,05;0;Áno;V poriadku
 Spárované;2020450912;2;British Airways;Odberateľská (Výnos);20260211241;11.2.2026;374,44;GBP;0,8699;430,44;1.4.2026;74,89;0,8711;85,97;-0,12;Áno;V poriadku
 Spárované;2020450733;2;British Airways;Odberateľská (Výnos);20260217062;17.2.2026;1 566,61;GBP;0,8733;1793,9;19.4.2026;783,31;0,8717;898,62;1,67;Áno;V poriadku
-Spárované;2020450939;2;Alza.cz a.s.;Dodávateľská (Náklad);20260224268;24.2.2026;1 075,34;CZK;24,225;44,39;17.4.2026;537,67;24,317;22,11;0,08;Áno;V poriadku
+Spárované;2020450939;2;Alza.cz a.s.;Odberateľská (Výnos);20260224268;24.2.2026;1 075,34;CZK;24,225;44,39;17.4.2026;537,67;24,317;22,11;-0,08;Áno;V poriadku
 Spárované;2020450944;2;British Airways;Odberateľská (Výnos);20260226273;26.2.2026;919,09;GBP;0,8719;1054,12;16.4.2026;183,82;0,8699;211,3;0,48;Áno;V poriadku
-Spárované;2020450759;1;Alza.cz a.s.;Dodávateľská (Náklad);20260302088;2.3.2026;1 539,21;CZK;24,274;63,41;11.4.2026;1 539,21;24,365;63,17;0,24;Áno;V poriadku
+Spárované;2020450759;1;Alza.cz a.s.;Odberateľská (Výnos);20260302088;2.3.2026;1 539,21;CZK;24,274;63,41;11.4.2026;1 539,21;24,365;63,17;-0,24;Áno;V poriadku
 Spárované;2020450778;1;British Airways;Odberateľská (Výnos);20260310107;10.3.2026;454,54;GBP;0,8654;525,21;13.4.2026;454,54;0,8706;522,11;-3,09;Áno;V poriadku
-Spárované;2020450783;1;Alza.cz a.s.;Dodávateľská (Náklad);20260312112;12.3.2026;1 337,61;CZK;24,406;54,81;8.4.2026;267,52;24,38;10,97;-0,01;Áno;V poriadku
+Spárované;2020450783;1;Alza.cz a.s.;Odberateľská (Výnos);20260312112;12.3.2026;1 337,61;CZK;24,406;54,81;8.4.2026;267,52;24,38;10,97;0,01;Áno;V poriadku
 Spárované;2020450794;1;British Airways;Odberateľská (Výnos);20260318123;18.3.2026;1 282,64;GBP;0,8639;1484,66;7.4.2026;641,32;0,8726;734,97;-7,36;Áno;V poriadku
 Spárované;2020450802;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260320131;20.3.2026;1 023,91;EUR;1;1023,91;1.4.2026;1 023,91;1;1023,91;0;Áno;V poriadku
 Spárované;2020450800;1;British Airways;Odberateľská (Výnos);20260320129;20.3.2026;1 067,33;GBP;0,8644;1234,79;3.4.2026;1 067,33;0,8725;1223,26;-11,53;Áno;V poriadku
@@ -321,12 +340,12 @@ Spárované;2020450806;1;Flux a.s.;Odberateľská (Výnos);20260324135;24.3.2026
 Spárované;2020450807;1;KROS a.s.;Dodávateľská (Náklad);2026030012;24.3.2026;1 400,86;EUR;1;1400,86;4.4.2026;-1 400,86;1;-1400,86;0;Áno;V poriadku
 Spárované;2020450808;1;British Airways;Odberateľská (Výnos);20260324137;24.3.2026;1 015,13;GBP;0,8654;1173;7.4.2026;1 015,13;0,8726;1163,37;-9,64;Áno;V poriadku
 Spárované;2020450809;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260325138;25.3.2026;107,35;EUR;1;107,35;5.4.2026;107,35;1;107,35;0;Áno;V poriadku
-Spárované;2020450811;1;Alza.cz a.s.;Dodávateľská (Náklad);20260325140;25.3.2026;1 324,89;CZK;24,437;54,22;4.4.2026;1 324,89;24,54;53,99;0,23;Áno;V poriadku
+Spárované;2020450811;1;Alza.cz a.s.;Odberateľská (Výnos);20260325140;25.3.2026;1 324,89;CZK;24,437;54,22;4.4.2026;1 324,89;24,54;53,99;-0,23;Áno;V poriadku
 Spárované;2020450812;1;British Airways;Odberateľská (Výnos);20260326141;26.3.2026;1 182,46;GBP;0,8652;1366,77;3.4.2026;1 182,46;0,8725;1355,21;-11,56;Áno;V poriadku
 Spárované;2020450814;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260326143;26.3.2026;690,24;EUR;1;690,24;5.4.2026;690,24;1;690,24;0;Áno;V poriadku
 Spárované;2020450817;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260327146;27.3.2026;717,54;EUR;1;717,54;8.4.2026;717,54;1;717,54;0;Nie (Manuálne);V poriadku
 Spárované;2020450818;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260330147;30.3.2026;924,58;EUR;1;924,58;7.4.2026;924,58;1;924,58;0;Áno;V poriadku
-Spárované;2020450823;1;Alza.cz a.s.;Dodávateľská (Náklad);20260331152;31.3.2026;1 334,97;CZK;24,514;54,46;5.4.2026;1 334,97;24,54;54,4;0,06;Áno;V poriadku
+Spárované;2020450823;1;Alza.cz a.s.;Odberateľská (Výnos);20260331152;31.3.2026;1 334,97;CZK;24,514;54,46;5.4.2026;1 334,97;24,54;54,4;-0,06;Áno;V poriadku
 Spárované;2020450821;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260331150;31.3.2026;562,67;EUR;1;562,67;9.4.2026;562,67;1;562,67;0;Nie (Manuálne);V poriadku
 Spárované;2020450822;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260331151;31.3.2026;1 061,44;EUR;1;1061,44;2.4.2026;1 061,44;1;1061,44;0;Áno;V poriadku
 Spárované;2020450825;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260401154;1.4.2026;1 109,93;EUR;1;1109,93;15.4.2026;1 109,93;1;1109,93;0;Nie (Manuálne);V poriadku
@@ -339,18 +358,19 @@ Spárované;2020450660;2;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);202600
 Spárované;2020450660;2;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260049;2.4.2026;1 200,00;EUR;1;1200;19.4.2026;600,00;1;600;0;Áno;V poriadku
 Spárované;2020450832;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260403161;3.4.2026;795,34;EUR;1;795,34;11.4.2026;795,34;1;795,34;0;Nie (Manuálne);V poriadku
 Spárované;2020450830;1;Flux a.s.;Odberateľská (Výnos);20260403159;3.4.2026;764,40;EUR;1;764,4;10.4.2026;764,40;1;764,4;0;Áno;V poriadku
-Spárované;2020450831;1;Alza.cz a.s.;Dodávateľská (Náklad);20260403160;3.4.2026;1 230,93;CZK;24,54;50,16;5.4.2026;1 230,93;24,54;50,16;0;Áno;V poriadku
+Spárované;2020450831;1;Alza.cz a.s.;Odberateľská (Výnos);20260403160;3.4.2026;1 230,93;CZK;24,54;50,16;5.4.2026;1 230,93;24,54;50,16;0;Áno;V poriadku
+Spárované;2020450835;1;Alza.cz a.s.;Odberateľská (Výnos);20260406164;6.4.2026;627,57;CZK;24,54;25,57;17.4.2026;627,57;24,317;25,81;0,23;Áno;V poriadku
 Spárované;2020450834;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260406163;6.4.2026;109,31;EUR;1;109,31;14.4.2026;109,31;1;109,31;0;Nie (Manuálne);V poriadku
 Spárované;2020450833;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260406162;6.4.2026;915,37;EUR;1;915,37;14.4.2026;915,37;1;915,37;0;Nie (Manuálne);V poriadku
 Spárované;2020450838;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260407167;7.4.2026;414,35;EUR;1;414,35;14.4.2026;414,35;1;414,35;0;Áno;V poriadku
 Spárované;2020450664;1;KROS a.s.;Dodávateľská (Náklad);2026040002;8.4.2026;120,00;EUR;1;120;21.4.2026;-120,00;1;-120;0;Nie (Manuálne);V poriadku
 Spárované;2020450840;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260408169;8.4.2026;1 064,30;EUR;1;1064,3;11.4.2026;532,15;1;532,15;0;Áno;V poriadku
-Spárované;2020450663;1;Alza.cz a.s.;Dodávateľská (Náklad);4082026;8.4.2026;2 100,00;CZK;24,38;86,14;17.4.2026;2 100,00;24,317;86,36;-0,22;Nie (Manuálne);V poriadku
+Spárované;2020450663;1;Alza.cz a.s.;Odberateľská (Výnos);4082026;8.4.2026;2 100,00;CZK;24,38;86,14;17.4.2026;2 100,00;24,317;86,36;0,22;Nie (Manuálne);V poriadku
 Spárované;2020450844;1;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260409173;9.4.2026;768,19;EUR;1;768,19;19.4.2026;768,19;1;768,19;0;Nie (Manuálne);V poriadku
 Spárované;2020450842;2;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260409171;9.4.2026;361,90;EUR;1;361,9;13.4.2026;72,38;1;72,38;0;Áno;V poriadku
 Spárované;2020450842;2;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260409171;9.4.2026;361,90;EUR;1;361,9;18.4.2026;72,38;1;72,38;0;Áno;V poriadku
 Spárované;2020450845;1;British Airways;Odberateľská (Výnos);20260410174;10.4.2026;1 009,46;GBP;0,871;1158,9;12.4.2026;1 009,46;0,871;1158,9;0;Áno;V poriadku
-Spárované;2020450847;1;Alza.cz a.s.;Dodávateľská (Náklad);20260410176;10.4.2026;1 566,23;CZK;24,365;64,28;22.4.2026;1 566,23;24,347;64,33;-0,05;Nie (Manuálne);V poriadku
+Spárované;2020450847;1;Alza.cz a.s.;Odberateľská (Výnos);20260410176;10.4.2026;1 566,23;CZK;24,365;64,28;22.4.2026;1 566,23;24,347;64,33;0,05;Nie (Manuálne);V poriadku
 Spárované;2020450848;1;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260413177;13.4.2026;1 123,51;EUR;1;1123,51;17.4.2026;561,76;1;561,76;0;Áno;V poriadku
 Spárované;2020450667;1;Flux a.s.;Odberateľská (Výnos);20260054;14.4.2026;2 100,00;EUR;1;2100;21.4.2026;2 100,00;1;2100;0;Nie (Manuálne);V poriadku
 Spárované;2020450666;1;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260053;14.4.2026;1 200,00;EUR;1;1200;17.4.2026;1 200,00;1;1200;0;Áno;V poriadku
@@ -366,31 +386,23 @@ Nespárovaná PLATBA;;0;Flux a.s.;(Príjem);20260120001;;0,00;;;0;25.1.2026;1 40
 Nespárovaná PLATBA;;0;Flux a.s.;(Príjem);20260120002;;0,00;;;0;25.1.2026;663,55;;663,55;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);20260121005;;0,00;;;0;30.1.2026;1 173,63;;1173,63;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Flux a.s.;(Príjem);20260121003;;0,00;;;0;25.1.2026;419,64;;419,64;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Alza.cz a.s.;(Príjem);20260121004;;0,00;;;0;30.1.2026;1 300,34;;1300,34;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Alza.cz a.s.;(Príjem);20260121004;;0,00;;;0;28.1.2026;783,87;;783,87;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Flux a.s.;(Príjem);20260121005;;0,00;;;0;31.1.2026;1 368,75;;1368,75;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Ing. Pavol Vnuk - NORPAL;(Príjem);20260122007;;0,00;;;0;24.1.2026;750,07;;750,07;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Flux a.s.;(Príjem);20260122007;;0,00;;;0;31.1.2026;1 351,45;;1351,45;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260123010;;0,00;;;0;27.1.2026;296,23;;296,23;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260123011;;0,00;;;0;30.1.2026;537,11;;537,11;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);20260123011;;0,00;;;0;29.1.2026;762,17;;762,17;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Ing. Pavol Vnuk - NORPAL;(Príjem);20260123009;;0,00;;;0;27.1.2026;570,14;;570,14;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);20260123010;;0,00;;;0;27.1.2026;188,35;;188,35;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260126013;;0,00;;;0;31.1.2026;249,36;;249,36;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);20260126013;;0,00;;;0;29.1.2026;1 058,59;;1058,59;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260127015;;0,00;;;0;29.1.2026;156,34;;156,34;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260128019;;0,00;;;0;29.1.2026;251,39;;251,39;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);20260129023;;0,00;;;0;30.1.2026;573,63;;573,63;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Mesačný poplatok za účet;(Výdavok);POPLATOK 01/2026;;0,00;;;0;28.1.2026;-7,50;;-7,5;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;British Airways;(Príjem);20260121003;;0,00;;;0;18.2.2026;269,36;;269,36;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260122006;;0,00;;;0;2.2.2026;436,69;;436,69;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260122006;;0,00;;;0;4.2.2026;1 114,66;;1114,66;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);20260123011;;0,00;;;0;9.2.2026;762,17;;762,17;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Ing. Pavol Vnuk - NORPAL;(Príjem);20260123009;;0,00;;;0;3.2.2026;570,14;;570,14;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);20260123010;;0,00;;;0;6.2.2026;188,35;;188,35;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Flux a.s.;(Príjem);20260123009;;0,00;;;0;2.2.2026;258,88;;258,88;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260126013;;0,00;;;0;9.2.2026;249,37;;249,37;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260126014;;0,00;;;0;6.2.2026;1 220,71;;1220,71;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;British Airways;(Príjem);20260126014;;0,00;;;0;3.2.2026;260,03;;260,03;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;British Airways;(Príjem);20260127017;;0,00;;;0;10.2.2026;1 220,07;;1220,07;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260127015;;0,00;;;0;12.2.2026;156,34;;156,34;0;-;Chýba faktúra v systéme alebo zlý VS
@@ -398,13 +410,11 @@ Nespárovaná PLATBA;;0;British Airways;(Príjem);20260127017;;0,00;;;0;1.2.2026
 Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);20260127015;;0,00;;;0;2.2.2026;169,32;;169,32;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);20260127015;;0,00;;;0;12.2.2026;169,33;;169,33;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;British Airways;(Príjem);20260128018;;0,00;;;0;6.2.2026;1 333,67;;1333,67;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Alza.cz a.s.;(Príjem);20260128020;;0,00;;;0;3.2.2026;513,91;;513,91;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Alza.cz a.s.;(Príjem);20260128020;;0,00;;;0;19.2.2026;165,09;;165,09;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;British Airways;(Príjem);20260128018;;0,00;;;0;27.2.2026;1 580,24;;1580,24;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);20260128019;;0,00;;;0;5.2.2026;235,35;;235,35;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);20260129021;;0,00;;;0;2.2.2026;371,00;;371;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);20260129021;;0,00;;;0;8.2.2026;371,01;;371,01;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260129021;;0,00;;;0;1.2.2026;635,37;;635,37;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260129022;;0,00;;;0;1.2.2026;496,66;;496,66;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Flux a.s.;(Príjem);20260129022;;0,00;;;0;6.2.2026;1 034,51;;1034,51;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);20260129023;;0,00;;;0;1.2.2026;205,97;;205,97;0;-;Chýba faktúra v systéme alebo zlý VS
@@ -412,19 +422,13 @@ Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);20260129023;;0
 Nespárovaná PLATBA;;0;Ing. Pavol Vnuk - NORPAL;(Príjem);20260130026;;0,00;;;0;12.2.2026;771,46;;771,46;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Ing. Pavol Vnuk - NORPAL;(Príjem);20260130025;;0,00;;;0;7.2.2026;125,81;;125,81;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Flux a.s.;(Príjem);20260130026;;0,00;;;0;12.2.2026;1 414,04;;1414,04;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260130025;;0,00;;;0;5.2.2026;1 174,20;;1174,2;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);20260202027;;0,00;;;0;12.2.2026;317,11;;317,11;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);20260202029;;0,00;;;0;9.2.2026;924,95;;924,95;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;British Airways;(Príjem);20260202027;;0,00;;;0;13.2.2026;1 330,71;;1330,71;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260202029;;0,00;;;0;13.2.2026;620,56;;620,56;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260203030;;0,00;;;0;8.2.2026;635,85;;635,85;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Flux a.s.;(Príjem);20260203031;;0,00;;;0;12.2.2026;234,77;;234,77;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260203030;;0,00;;;0;6.2.2026;1 453,49;;1453,49;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;British Airways;(Príjem);20260203031;;0,00;;;0;26.2.2026;398,30;;398,3;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260204033;;0,00;;;0;7.2.2026;1 020,10;;1020,1;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);20260204034;;0,00;;;0;7.2.2026;500,73;;500,73;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Ing. Pavol Vnuk - NORPAL;(Príjem);20260204034;;0,00;;;0;11.2.2026;813,72;;813,72;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260204033;;0,00;;;0;10.2.2026;1 435,08;;1435,08;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Flux a.s.;(Príjem);20260204035;;0,00;;;0;7.2.2026;230,06;;230,06;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Flux a.s.;(Príjem);20260204035;;0,00;;;0;20.2.2026;230,05;;230,05;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Flux a.s.;(Príjem);20260205037;;0,00;;;0;12.2.2026;444,05;;444,05;0;-;Chýba faktúra v systéme alebo zlý VS
@@ -438,9 +442,7 @@ Nespárovaná PLATBA;;0;Ing. Pavol Vnuk - NORPAL;(Príjem);20260206039;;0,00;;;0
 Nespárovaná PLATBA;;0;Flux a.s.;(Príjem);20260206039;;0,00;;;0;11.2.2026;122,82;;122,82;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);20260209043;;0,00;;;0;11.2.2026;632,07;;632,07;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;British Airways;(Príjem);20260209043;;0,00;;;0;16.2.2026;717,10;;717,1;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260209042;;0,00;;;0;13.2.2026;773,91;;773,91;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Ing. Pavol Vnuk - NORPAL;(Príjem);20260209042;;0,00;;;0;12.2.2026;1 038,57;;1038,57;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260210046;;0,00;;;0;17.2.2026;873,39;;873,39;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;British Airways;(Príjem);20260210047;;0,00;;;0;24.2.2026;1 350,80;;1350,8;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Ing. Pavol Vnuk - NORPAL;(Príjem);20260210047;;0,00;;;0;16.2.2026;521,26;;521,26;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260210045;;0,00;;;0;15.2.2026;114,16;;114,16;0;-;Chýba faktúra v systéme alebo zlý VS
@@ -449,7 +451,6 @@ Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260210045;;0,00;;
 Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260210045;;0,00;;;0;24.2.2026;638,57;;638,57;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260210046;;0,00;;;0;15.2.2026;76,22;;76,22;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260210046;;0,00;;;0;26.2.2026;76,21;;76,21;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260211050;;0,00;;;0;19.2.2026;471,87;;471,87;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Flux a.s.;(Príjem);20260211049;;0,00;;;0;22.2.2026;539,68;;539,68;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260211049;;0,00;;;0;13.2.2026;195,03;;195,03;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Lucia Prekladová - LINGUA;(Príjem);20260211049;;0,00;;;0;26.2.2026;195,03;;195,03;0;-;Chýba faktúra v systéme alebo zlý VS
@@ -471,7 +472,6 @@ Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);2O260050;;0,00
 Nespárovaná PLATBA;;0;Jana Tvorivá - Creative Studio;(Príjem);2O260050;;0,00;;;0;16.4.2026;80,00;;80;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;KROS a.s.;(Výdavok);UHRADA87;;0,00;;;0;5.4.2026;-280,36;;-280,36;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;KROS a.s.;(Výdavok);UHRADA87;;0,00;;;0;11.4.2026;-280,37;;-280,37;0;-;Chýba faktúra v systéme alebo zlý VS
-Nespárovaná PLATBA;;0;Alza.cz a.s.;(Príjem);2O260406164;;0,00;;;0;17.4.2026;627,57;;627,57;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Flux a.s.;(Príjem);UHRADA87;;0,00;;;0;12.4.2026;498,71;;498,71;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;Flux a.s.;(Príjem);UHRADA87;;0,00;;;0;19.4.2026;498,71;;498,71;0;-;Chýba faktúra v systéme alebo zlý VS
 Nespárovaná PLATBA;;0;British Airways;(Príjem);UHRADA87;;0,00;;;0;13.4.2026;925,01;;925,01;0;-;Chýba faktúra v systéme alebo zlý VS
@@ -484,26 +484,22 @@ Nespárovaná PLATBA;;0;Flux a.s.;(Príjem);UHRADA11;;0,00;;;0;22.4.2026;48,72;;
 Nespárovaná PLATBA;;0;Mesačný poplatok za účet;(Výdavok);POPLATOK 04/2026;;0,00;;;0;22.4.2026;-7,50;;-7,5;0;-;Chýba faktúra v systéme alebo zlý VS
 Neuhradená FAKTÚRA;2020450661;0;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260050;2.4.2026;400,00;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450665;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260052;14.4.2026;650,00;;;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450669;0;Alza.cz a.s.;Dodávateľská (Náklad);4172026;17.4.2026;4 200,00;;24,317;0;;0,00;;0;0;-;Čaká sa na úhradu
+Neuhradená FAKTÚRA;2020450669;0;Alza.cz a.s.;Odberateľská (Výnos);4172026;17.4.2026;4 200,00;;24,317;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450670;0;British Airways;Odberateľská (Výnos);20260056;17.4.2026;1 100,00;;0,87168;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450671;0;KROS a.s.;Dodávateľská (Náklad);2026040005;17.4.2026;45,90;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450672;0;Flux a.s.;Odberateľská (Výnos);20260120001;20.1.2026;658,25;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450673;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260120002;20.1.2026;982,40;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450674;0;Flux a.s.;Odberateľská (Výnos);20260121003;21.1.2026;419,64;;;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450675;0;Alza.cz a.s.;Dodávateľská (Náklad);20260121004;21.1.2026;783,87;;24,356;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450676;0;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260121005;21.1.2026;1 173,63;;;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450677;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260122006;22.1.2026;436,69;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450678;0;Flux a.s.;Odberateľská (Výnos);20260122007;22.1.2026;1 351,45;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450680;0;Flux a.s.;Odberateľská (Výnos);20260123009;23.1.2026;258,88;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450681;0;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260123010;23.1.2026;941,74;;;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450682;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260123011;23.1.2026;537,11;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450684;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260126013;26.1.2026;498,73;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450685;0;British Airways;Odberateľská (Výnos);20260126014;26.1.2026;260,03;;0,8675;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450686;0;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260127015;27.1.2026;338,65;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450688;0;British Airways;Odberateľská (Výnos);20260127017;27.1.2026;1 220,07;;0,8683;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450689;0;British Airways;Odberateľská (Výnos);20260128018;28.1.2026;1 333,67;;0,8685;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450690;0;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260128019;28.1.2026;235,35;;;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450691;0;Alza.cz a.s.;Dodávateľská (Náklad);20260128020;28.1.2026;513,91;;24,294;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450692;0;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260129021;29.1.2026;742,01;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450693;0;Flux a.s.;Odberateľská (Výnos);20260129022;29.1.2026;1 034,51;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450694;0;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260129023;29.1.2026;573,63;;;0;;0,00;;0;0;-;Čaká sa na úhradu
@@ -511,9 +507,7 @@ Neuhradená FAKTÚRA;2020450696;0;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výno
 Neuhradená FAKTÚRA;2020450697;0;Flux a.s.;Odberateľská (Výnos);20260130026;30.1.2026;1 414,04;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450698;0;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260202027;2.2.2026;317,11;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450700;0;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260202029;2.2.2026;924,95;;;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450701;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260203030;3.2.2026;1 453,49;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450702;0;British Airways;Odberateľská (Výnos);20260203031;3.2.2026;796,60;;0,8623;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450704;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260204033;4.2.2026;1 435,08;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450705;0;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260204034;4.2.2026;813,72;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450706;0;Flux a.s.;Odberateľská (Výnos);20260204035;4.2.2026;460,11;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450708;0;Flux a.s.;Odberateľská (Výnos);20260205037;5.2.2026;444,05;;;0;;0,00;;0;0;-;Čaká sa na úhradu
@@ -523,23 +517,21 @@ Neuhradená FAKTÚRA;2020450712;0;Jana Tvorivá - Creative Studio;Odberateľská
 Neuhradená FAKTÚRA;2020450713;0;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260209042;9.2.2026;1 038,57;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450714;0;British Airways;Odberateľská (Výnos);20260209043;9.2.2026;717,10;;0,8701;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450716;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260210045;10.2.2026;570,78;;;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450717;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260210046;10.2.2026;873,39;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450718;0;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260210047;10.2.2026;1 042,52;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450720;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260211049;11.2.2026;975,17;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450721;0;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260211050;11.2.2026;969,43;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450797;0;British Airways;Odberateľská (Výnos);20260319126;19.3.2026;1 510,13;;0,86388;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450815;0;Alza.cz a.s.;Dodávateľská (Náklad);20260327144;27.3.2026;112,32;;24,542;0;;0,00;;0;0;-;Čaká sa na úhradu
+Neuhradená FAKTÚRA;2020450815;0;Alza.cz a.s.;Odberateľská (Výnos);20260327144;27.3.2026;112,32;;24,542;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450816;0;Flux a.s.;Odberateľská (Výnos);20260327145;27.3.2026;167,24;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450819;0;KROS a.s.;Dodávateľská (Náklad);2026030013;30.3.2026;1 326,37;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450820;0;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260330149;30.3.2026;1 538,54;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450824;0;British Airways;Odberateľská (Výnos);20260401153;1.4.2026;1 107,64;;0,87113;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450827;0;KROS a.s.;Dodávateľská (Náklad);2026040001;2.4.2026;560,73;;;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450835;0;Alza.cz a.s.;Dodávateľská (Náklad);20260406164;6.4.2026;627,57;;24,54;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450836;0;Flux a.s.;Odberateľská (Výnos);20260407165;7.4.2026;997,42;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450837;0;British Airways;Odberateľská (Výnos);20260407166;7.4.2026;925,01;;0,87258;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450839;0;Alza.cz a.s.;Dodávateľská (Náklad);20260408168;8.4.2026;837,32;;24,38;0;;0,00;;0;0;-;Čaká sa na úhradu
+Neuhradená FAKTÚRA;2020450839;0;Alza.cz a.s.;Odberateľská (Výnos);20260408168;8.4.2026;837,32;;24,38;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450841;0;British Airways;Odberateľská (Výnos);20260408170;8.4.2026;139,72;;0,86893;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450843;0;Alza.cz a.s.;Dodávateľská (Náklad);20260409172;9.4.2026;501,52;;24,401;0;;0,00;;0;0;-;Čaká sa na úhradu
+Neuhradená FAKTÚRA;2020450843;0;Alza.cz a.s.;Odberateľská (Výnos);20260409172;9.4.2026;501,52;;24,401;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450846;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260410175;10.4.2026;1 001,52;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450849;0;Flux a.s.;Odberateľská (Výnos);20260413178;13.4.2026;663,85;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450850;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260413179;13.4.2026;499,97;;;0;;0,00;;0;0;-;Čaká sa na úhradu
@@ -547,46 +539,34 @@ Neuhradená FAKTÚRA;2020450852;0;British Airways;Odberateľská (Výnos);202604
 Neuhradená FAKTÚRA;2020450853;0;Flux a.s.;Odberateľská (Výnos);20260414182;14.4.2026;662,23;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450854;0;Flux a.s.;Odberateľská (Výnos);20260415183;15.4.2026;891,16;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450857;0;Flux a.s.;Odberateľská (Výnos);20260416186;16.4.2026;243,62;;;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450859;0;Alza.cz a.s.;Dodávateľská (Náklad);20260416188;16.4.2026;444,14;;24,349;0;;0,00;;0;0;-;Čaká sa na úhradu
+Neuhradená FAKTÚRA;2020450859;0;Alza.cz a.s.;Odberateľská (Výnos);20260416188;16.4.2026;444,14;;24,349;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450861;0;British Airways;Odberateľská (Výnos);20260417190;17.4.2026;1 576,70;;0,87168;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450862;0;British Airways;Odberateľská (Výnos);20260417191;17.4.2026;323,49;;0,87168;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450960;0;Flux a.s.;Odberateľská (Výnos);20260120001;20.1.2026;1 409,28;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450961;0;Flux a.s.;Odberateľská (Výnos);20260120002;20.1.2026;663,55;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450962;0;British Airways;Odberateľská (Výnos);20260121003;21.1.2026;1 346,82;;0,8744;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450963;0;Alza.cz a.s.;Dodávateľská (Náklad);20260121004;21.1.2026;1 300,34;;24,356;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450964;0;Flux a.s.;Odberateľská (Výnos);20260121005;21.1.2026;1 368,75;;;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450965;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260122006;22.1.2026;1 114,66;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450966;0;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260122007;22.1.2026;750,07;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450968;0;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260123009;23.1.2026;1 140,28;;;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450969;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260123010;23.1.2026;296,23;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450970;0;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260123011;23.1.2026;1 524,34;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450972;0;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260126013;26.1.2026;1 058,59;;;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450973;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260126014;26.1.2026;1 220,71;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450974;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260127015;27.1.2026;781,70;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450976;0;British Airways;Odberateľská (Výnos);20260127017;27.1.2026;1 200,59;;0,8683;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450977;0;British Airways;Odberateľská (Výnos);20260128018;28.1.2026;1 580,24;;0,8685;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450978;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260128019;28.1.2026;251,39;;;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450979;0;Alza.cz a.s.;Dodávateľská (Náklad);20260128020;28.1.2026;330,18;;24,294;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450980;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260129021;29.1.2026;635,37;;;0;;0,00;;0;0;-;Čaká sa na úhradu
+Neuhradená FAKTÚRA;2020450979;0;Alza.cz a.s.;Odberateľská (Výnos);20260128020;28.1.2026;330,18;;24,294;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450981;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260129022;29.1.2026;496,66;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450982;0;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260129023;29.1.2026;1 029,86;;;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450984;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260130025;30.1.2026;1 174,20;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450985;0;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260130026;30.1.2026;771,46;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450986;0;British Airways;Odberateľská (Výnos);20260202027;2.2.2026;1 330,71;;0,8658;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450988;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260202029;2.2.2026;620,56;;;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450989;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260203030;3.2.2026;635,85;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450990;0;Flux a.s.;Odberateľská (Výnos);20260203031;3.2.2026;234,77;;;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020450992;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260204033;4.2.2026;1 020,10;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450993;0;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260204034;4.2.2026;500,73;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450994;0;British Airways;Odberateľská (Výnos);20260204035;4.2.2026;1 440,03;;0,8616;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450996;0;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260205037;5.2.2026;410,66;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450997;0;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260205038;5.2.2026;706,66;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020450998;0;Ing. Pavol Vnuk - NORPAL;Odberateľská (Výnos);20260206039;6.2.2026;511,67;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020451000;0;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260206041;6.2.2026;1 072,26;;;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020451001;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260209042;9.2.2026;773,91;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020451002;0;Jana Tvorivá - Creative Studio;Odberateľská (Výnos);20260209043;9.2.2026;632,07;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020451004;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260210045;10.2.2026;1 277,14;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020451005;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260210046;10.2.2026;152,43;;;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020451006;0;British Airways;Odberateľská (Výnos);20260210047;10.2.2026;1 350,80;;0,8695;0;;0,00;;0;0;-;Čaká sa na úhradu
 Neuhradená FAKTÚRA;2020451008;0;Flux a.s.;Odberateľská (Výnos);20260211049;11.2.2026;539,68;;;0;;0,00;;0;0;-;Čaká sa na úhradu
-Neuhradená FAKTÚRA;2020451009;0;Lucia Prekladová - LINGUA;Odberateľská (Výnos);20260211050;11.2.2026;471,87;;;0;;0,00;;0;0;-;Čaká sa na úhradu
