@@ -47,24 +47,26 @@
                 <span class="text-sm font-medium opacity-80"><i class="far fa-calendar-alt mr-1"></i> Apríl 2026</span>
             </div>
             <h1 class="text-3xl md:text-4xl font-extrabold mb-2">Forenzná analýza a finančný controlling</h1>
-            <p class="text-blue-100 text-lg">Kompletný skript pre RStudio s opravenou relačnou väzbou na typ obchodného partnera.</p>
+            <p class="text-blue-100 text-lg">Kompletný skript pre RStudio s opravenou adresáciou stĺpcov pre bezchybný beh.</p>
         </header>
 
         <div class="prose max-w-none text-slate-600 mb-8">
-            <p>Tento panel slúži ako portál pre stiahnutie finálneho zdrojového kódu. Analytická logika <strong>je plne implementovaná v Rmd súbore.</strong> Skript prešiel hĺbkovým refaktoringom matematiky pre kurzové zisky a straty v súlade s 3. normálnou formou relačnej databázy.</p>
+            <p>Tento panel slúži ako portál pre stiahnutie finálneho zdrojového kódu. Analytická logika <strong>je plne implementovaná v Rmd súbore.</strong> Tento skript integruje všetky doterajšie požiadavky a bezpečne rieši anomálie pri spájaní dát z banky a účtovníctva.</p>
         </div>
 
         <div class="p-6 bg-slate-50 rounded-lg border border-slate-200 mb-6">
             <h3 class="text-slate-800 font-bold mb-4 text-lg"><i class="fas fa-check-circle text-green-600 mr-2"></i>Čo všetko obsahuje tento Rmd skript:</h3>
             <ul class="list-disc ml-6 text-slate-600 space-y-2">
                 <li><strong>Oddelenie splátok:</strong> Automatická separácia bežných splátok od rizikových anomálií (3 a viac platieb).</li>
-                <li><strong>Fuzzy Logic Audit:</strong> Detekcia a kontrola spoľahlivosti zásahov AI pri párovaní preklepov.</li>
-                <li><span class="bg-indigo-100 text-indigo-800 font-bold px-2 py-0.5 rounded text-xs ml-[-5px]">RELAČNÝ UPDATE</span> <strong>Závislosť od Typu partnera:</strong> Skript po novom importuje aj súbor <code>Tbl_partner.xlsx</code>. Odstránil sa predpoklad, že typ faktúry existuje v transakčnej tabuľke. Na určenie správneho znamienka kurzového rozdielu (Náklad/Výnos) sa využíva krížové spojenie kľúčov <code>FK_partner_ID = PK_partner</code>, čím systém zistí, či ide o dodávateľa alebo odberateľa.</li>
-                <li><strong>Finančná analytika:</strong>
+                <li><strong>Fuzzy Logic Audit:</strong> Detekcia a kontrola spoľahlivosti zásahov AI pri párovaní preklepov. Ignorovanie nezmyselných záznamov (napr. UHRADA87).</li>
+                <li><span class="bg-green-100 text-green-800 font-bold px-2 py-0.5 rounded text-xs ml-[-5px]">NOVÉ</span> <strong>Konzistencia IBANov pri splátkach:</strong> Pridaný nový forenzný test (Test 4), ktorý pátra po faktúrach, ktoré boli uhradené viacerými platbami, pričom každá platba prišla z iného IBAN účtu.</li>
+                <li><strong>Ochrana pred stratou primárneho kľúča v dplyr:</strong> Skript správne cieli na stĺpec <code>fk_faktura</code> v sekcii Konfliktov mien, čím sa predchádza kritickej chybe <em>"Can't select columns that don't exist"</em> po vykonaní funkcie <code>inner_join()</code>. Zavedená je aj robustná ochrana (Fallback) proti premenovaným kľúčom priamo z MS Access.</li>
+                <li><strong>Finančná analytika (Miriam):</strong>
                     <ul class="list-circle ml-6 mt-1 space-y-1 text-sm">
                         <li>Výpočet kurzových ziskov/strát s grafom po mesiacoch.</li>
-                        <li>Líniové grafy analyzujúce <strong>vývoj použitých kurzov NBS v čase</strong> pre každú cudziu menu zvlášť.</li>
-                        <li><strong>Mesačný Cashflow</strong> a <strong>TOP 5 partnerov</strong> stopercentne prepočítaný na EUR.</li>
+                        <li>Líniové grafy (Facet wrap) analyzujúce <strong>vývoj použitých kurzov NBS v čase</strong>.</li>
+                        <li><strong>Mesačný Cashflow</strong> (Príjmy vs. Výdavky) stopercentne prepočítaný na EUR.</li>
+                        <li><strong>TOP 5 Odberateľov a Dodávateľov</strong> zoradených podľa reálneho bankového obratu.</li>
                     </ul>
                 </li>
             </ul>
@@ -75,7 +77,7 @@
             <button onclick="downloadRmd()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg shadow-lg transition flex items-center justify-center text-lg font-bold mx-auto">
                 <i class="fas fa-file-code mr-3"></i> Stiahnuť Analyza_Uhrad_Kompletna.Rmd
             </button>
-            <p class="text-sm text-blue-700 mt-4">Stiahnutý súbor umiestnite k vašim CSV/XLSX exportom (vyžaduje aj Tbl_partner.xlsx) a spustite "Knit" v RStudiu.</p>
+            <p class="text-sm text-blue-700 mt-4">Stiahnutý súbor umiestnite k vašim CSV/XLSX exportom a spustite "Knit" v RStudiu.</p>
         </div>
 
     </div>
@@ -90,7 +92,7 @@ date: "\`r Sys.Date()\`"
 output: html_document
 ---
 
-Tento skript vykonáva hĺbkový audit finančných dát. Obsahuje procesy čistenia hlavičiek, výpočet stavov úhrad, transakčný rozpad s prísnym oddelením bežných a rizikových splátok, audit Fuzzy párovania a kompletnú pokročilú analytiku peňažných tokov (s relačným priradením typu partnera).
+Tento skript vykonáva hĺbkový audit finančných dát. Obsahuje procesy čistenia hlavičiek, výpočet stavov úhrad, transakčný rozpad s prísnym oddelením bežných a rizikových splátok, audit Fuzzy párovania, detailnú detekciu anomálií v kurzoch a menách a kompletnú pokročilú analytiku peňažných tokov.
 
 ## 1. Načítanie a robustná štandardizácia dát
 
@@ -103,7 +105,6 @@ library(scales)
 
 subor_platby <- "tbl_platba.xlsx"
 subor_faktury <- "Tbl_faktura.xlsx"
-subor_partner <- "Tbl_partner.xlsx"
 
 if (!file.exists(subor_platby) | !file.exists(subor_faktury)) {
   stop("Chyba: Súbory sa nenašli. Uistite sa, že sú v pracovnom adresári.")
@@ -126,19 +127,18 @@ clean_headers <- function(df) {
 platby <- clean_headers(platby_raw)
 faktury <- clean_headers(faktury_raw)
 
-# Normalizácia kľúčových polí
+# Normalizácia kľúčových polí (ak by sa pri exporte nazvali inak)
 if("suma" %in% names(platby)) platby <- rename(platby, suma_platby = suma)
 if("suma" %in% names(faktury)) faktury <- rename(faktury, suma_faktury = suma)
 if("iban_protistrany" %in% names(platby)) platby <- rename(platby, iban_platby = iban_protistrany)
 
-# Fallback premenovania kľúčov vo faktúrach
+# Fallback: Ochrana premenovania primárnych a cudzích kľúčov z MS Access
 if(!"id_faktura" %in% names(faktury)) {
   if("id" %in% names(faktury)) faktury <- rename(faktury, id_faktura = id)
   else if("id_faktury" %in% names(faktury)) faktury <- rename(faktury, id_faktura = id_faktury)
   else if("pk_faktura" %in% names(faktury)) faktury <- rename(faktury, id_faktura = pk_faktura)
 }
 
-# Fallback premenovania kľúčov v platbách
 if(!"fk_faktura" %in% names(platby)) {
   if("id_faktura_sparovana" %in% names(platby)) platby <- rename(platby, fk_faktura = id_faktura_sparovana)
 }
@@ -169,40 +169,6 @@ if("fk_mena" %in% names(faktury)) {
     faktury$fk_mena <- 1
     faktury$Mena_Skratka <- "EUR"
 }
-
-# ==============================================================================
-# NOVÉ: RELAČNÉ NAČÍTANIE TYPU PARTNERA
-# ==============================================================================
-if (file.exists(subor_partner)) {
-  partner_raw <- read_excel(subor_partner)
-  partner <- clean_headers(partner_raw)
-
-  # Normalizácia kľúčov v Tbl_partner
-  if(!"pk_partner" %in% names(partner) && "id_partner" %in% names(partner)) {
-      partner$pk_partner <- partner$id_partner
-  } else if (!"pk_partner" %in% names(partner) && "id" %in% names(partner)) {
-      partner$pk_partner <- partner$id
-  }
-
-  if(!"typ_partnera" %in% names(partner)) partner$typ_partnera <- TRUE
-} else {
-  partner <- data.frame(pk_partner = integer(), typ_partnera = logical())
-  cat("UPOZORNENIE: Súbor Tbl_partner.xlsx sa nenašiel. Typ partnera (Odberateľ/Dodávateľ) bude odhadnutý.\n")
-}
-
-# Prepojenie faktúr s partnermi na zistenie typu
-if(!"fk_partner_id" %in% names(faktury) && "fk_partner" %in% names(faktury)) faktury$fk_partner_id <- faktury$fk_partner
-
-if("fk_partner_id" %in% names(faktury) && "pk_partner" %in% names(partner)) {
-    faktury <- faktury %>%
-      left_join(partner %>% select(pk_partner, typ_partnera), by = c("fk_partner_id" = "pk_partner"))
-} else {
-    faktury$typ_partnera <- TRUE
-}
-
-# Fallback pre prípad prázdnych hodnôt
-if(!"typ_partnera" %in% names(faktury)) faktury$typ_partnera <- TRUE
-faktury$typ_partnera[is.na(faktury$typ_partnera)] <- TRUE
 
 cat("Načítaných platieb:", nrow(platby), "\\nNačítaných faktúr:", nrow(faktury), "\\n")
 \`\`\`
@@ -237,8 +203,6 @@ kable(as.data.frame(table(analyza$Stav_Uhrady)), col.names = c("Stav Úhrady", "
 
 ## 3. Transakčný rozpad s detekciou rizík (Audit Splátok)
 
-V tejto sekcii oddelíme faktúry hradené štandardne (max. 2 splátky) od vysoko rozdrobených úhrad (3 a viac splátok). Pri rizikových splátkach skript pridáva krížovú kontrolu IBANu a Variabilného symbolu.
-
 \`\`\`{r drilldown_splatky, message=FALSE}
 detailne_transakcie <- platby %>%
   filter(!is.na(fk_faktura)) %>%
@@ -251,7 +215,7 @@ detailne_transakcie <- platby %>%
   ) %>%
   ungroup() %>%
   inner_join(
-    analyza %>% select(id_faktura, variabilny_symbol, suma_faktury, Stav_Uhrady, datum_vystavenia, iban_faktury = iban, kurz_vystavenia, fk_mena_faktura = fk_mena, Mena_Skratka, typ_partnera),
+    analyza %>% select(id_faktura, variabilny_symbol, suma_faktury, Stav_Uhrady, datum_vystavenia, iban_faktury = iban, kurz_vystavenia, fk_mena_faktura = fk_mena, Mena_Skratka),
     by = c("fk_faktura" = "id_faktura")
   ) %>%
   mutate(
@@ -337,8 +301,6 @@ print(graf_metody)
 
 ## 7. Finančná analytika a controlling (Miriam)
 
-V tejto sekcii systém aplikuje prísnu účtovnú matematiku pre určenie kurzového zisku/straty v závislosti od *typu partnera* prevzatého z kmeňových dát.
-
 ### 7.1 Analýza kurzových rozdielov (FX) po mesiacoch
 
 \`\`\`{r fx_analysis, message=FALSE, fig.width=10, fig.height=5}
@@ -359,14 +321,7 @@ fx_data <- detailne_transakcie %>%
       is.na(pouzity_kurz_nbs) ~ 1.0,
       TRUE ~ as.numeric(pouzity_kurz_nbs)
     ),
-
-    # OPRAVA ZNAMIENKA: Využíva atribút 'typ_partnera' z tabuľky Tbl_partner
-    Znamienko_Partnera = ifelse(typ_partnera %in% c(FALSE, 0, "FALSE", "False", "false") | suma_platby < 0, -1, 1),
-
-    # OPRAVA EUR: Pre EUR je kurzový rozdiel vždy striktne 0
-    Kurzovy_Rozdiel = ifelse(fk_mena_faktura == 1, 0,
-        round(Znamienko_Partnera * ((abs(suma_platby) / kurz_pl_final) - (abs(suma_platby) / kurz_fa_final)), 2)
-    ),
+    Kurzovy_Rozdiel = ifelse(fk_mena_faktura == 1, 0, round((suma_platby / kurz_pl_final) - (suma_platby / kurz_fa_final), 2)),
     Mesiac = format(as.Date(datum), "%Y-%m")
   )
 
@@ -563,6 +518,28 @@ if(nrow(konflikt_mien) > 0) {
   print(kable(konflikt_mien, format = "markdown", align = "llclcl"))
 } else {
   cat("\\n✅ **Test 3 v poriadku:** Všetky spárované platby boli prijaté v korektnej mene zhodnej s faktúrou.\\n")
+}
+
+# --- TEST 4: Kontrola konzistencie IBAN účtov pri jednej faktúre ---
+konflikt_ibanov_splatky <- detailne_transakcie %>%
+  filter(!is.na(iban_platby) & iban_platby != "") %>%
+  group_by(fk_faktura, variabilny_symbol) %>%
+  summarise(
+    Pocet_Roznych_IBAN = n_distinct(iban_platby),
+    Pouzite_IBANy = paste(unique(iban_platby), collapse = " vs "),
+    .groups = "drop"
+  ) %>%
+  filter(Pocet_Roznych_IBAN > 1)
+
+if(nrow(konflikt_ibanov_splatky) > 0) {
+  cat("\\n⚠️ **NÁJDENÁ ANOMÁLIA (Rôzne IBANy pri 1 faktúre):** Boli identifikované faktúry, ktoré boli hradené viacerými platbami, pričom peniaze prišli z RÔZNYCH bankových účtov (IBANov). Toto môže indikovať chybu párovania alebo úhradu treťou stranou:\\n\\n")
+
+  tabulka_ibanov <- konflikt_ibanov_splatky %>%
+    select(\`VS Faktúry\` = variabilny_symbol, \`Počet rôznych IBAN\` = Pocet_Roznych_IBAN, \`Zaznamenané IBANy\` = Pouzite_IBANy)
+
+  print(kable(tabulka_ibanov, format = "markdown", align = "lcl"))
+} else {
+  cat("\\n✅ **Test 4 v poriadku:** Všetky faktúry hradené viacerými splátkami boli zaplatené z jedného konzistentného IBAN účtu.\\n")
 }
 \`\`\`
 

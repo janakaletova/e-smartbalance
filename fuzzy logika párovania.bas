@@ -64,6 +64,7 @@ Public Sub Parovanie_FuzzyLogic()
     Dim p_id As Long, f_id As Long
     Dim p_vs As String, f_vs As String
     Dim p_suma As Double, f_zostatok As Double
+    Dim m1, m2 As String
     
     Dim sim As Double
     Dim threshold As Double
@@ -84,7 +85,7 @@ Public Sub Parovanie_FuzzyLogic()
     On Error GoTo ErrorHandler
     
     ' 1. Naèítanie len NESPÁROVANÝCH platieb z banky
-    Set rsPlatby = db.OpenRecordset("SELECT ID_platby, suma, var_symbol_banka FROM tbl_platba WHERE FK_faktura Is Null AND var_symbol_banka Is Not Null")
+    Set rsPlatby = db.OpenRecordset("SELECT tbl_platba.ID_platby, Tbl_mena.Skratka AS Mena, tbl_platba.suma, tbl_platba.var_symbol_banka FROM Tbl_mena INNER JOIN tbl_platba ON Tbl_mena.PK_mena = tbl_platba.FK_mena WHERE ( ((tbl_platba.var_symbol_banka) IS NOT NULL) AND ((tbl_platba.FK_faktura) IS NULL))")
     
     If Not rsPlatby.EOF Then
         rsPlatby.MoveFirst
@@ -96,7 +97,7 @@ Public Sub Parovanie_FuzzyLogic()
             p_suma = Abs(Nz(rsPlatby!suma, 0))
             
             ' 2. Pre každú platbu otvoríme zoznam NEUHRADENÝCH faktúr a zostatkov
-            Set rsFaktury = db.OpenRecordset("SELECT ID_faktura, Variabilny_symbol, Chyba_Doplatit FROM qry_Faktury_Na_Vyber WHERE Variabilny_symbol Is Not Null")
+            Set rsFaktury = db.OpenRecordset("SELECT ID_faktura,Mena, Variabilny_symbol, Chyba_Doplatit FROM qry_Faktury_Na_Vyber WHERE Variabilny_symbol Is Not Null")
             
             If Not rsFaktury.EOF Then
                 rsFaktury.MoveFirst
@@ -110,20 +111,22 @@ Public Sub Parovanie_FuzzyLogic()
                     
                     ' Podmienka 1: Variabilný symbol sa musí podoba na aspoò 75%
                     If sim >= threshold Then
+                        m1 = rsFaktury!Mena
+                        m2 = rsPlatby!Mena
                         ' Podmienka 2: Suma na platbe je rovnaká ako aktuálny zostatok na doplatenie faktúry
-                        If Round(p_suma, 2) = Round(f_zostatok, 2) Then
-                            
-                            ' Našli sme zhodu! Zapíšeme ju cez aktualizaèný SQL príkaz
-                            ' Tento príkaz sa vïaka wrk.BeginTrans zatia¾ neuloží natrvalo
-                            db.Execute "UPDATE tbl_platba SET " & _
-                                       "FK_faktura = " & f_id & ", " & _
-                                       "autoparovaci_dotaz = 'fuzzy logic', " & _
-                                       "sparovane_automaticky = True " & _
-                                       "WHERE ID_platby = " & p_id
-                                       
-                            countPaired = countPaired + 1
-                            Exit Do ' Platba je vybavená, preskoèíme na ïalšiu platbu
-                            
+                        If Round(p_suma, 2) = Round(f_zostatok, 2) And m1 = m2 Then
+                           If m1 = m2 Then
+                                ' Našli sme zhodu! Zapíšeme ju cez aktualizaèný SQL príkaz
+                                ' Tento príkaz sa vïaka wrk.BeginTrans zatia¾ neuloží natrvalo
+                                db.Execute "UPDATE tbl_platba SET " & _
+                                           "FK_faktura = " & f_id & ", " & _
+                                           "autoparovaci_dotaz = 'fuzzy logic', " & _
+                                           "sparovane_automaticky = True " & _
+                                           "WHERE ID_platby = " & p_id
+                                           
+                                countPaired = countPaired + 1
+                                Exit Do ' Platba je vybavená, preskoèíme na ïalšiu platbu
+                           End If
                         End If
                     End If
                     rsFaktury.MoveNext
@@ -169,4 +172,6 @@ ErrorHandler:
     wrk.Rollback
     MsgBox "Nastala neoèakávaná chyba: " & Err.Description, vbCritical, "Kritická chyba"
 End Sub
+
+
 

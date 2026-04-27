@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 output: html_document
 ---
 
-Tento skript vykonáva hĺbkový audit finančných dát. Obsahuje procesy čistenia hlavičiek, výpočet stavov úhrad, transakčný rozpad s prísnym oddelením bežných a rizikových splátok, audit Fuzzy párovania a kompletnú pokročilú analytiku peňažných tokov (s relačným priradením typu partnera).
+Tento skript vykonáva hĺbkový audit finančných dát. Obsahuje procesy čistenia hlavičiek, výpočet stavov úhrad, transakčný rozpad s prísnym oddelením bežných a rizikových splátok, audit Fuzzy párovania, detailnú detekciu anomálií v kurzoch a menách a kompletnú pokročilú analytiku peňažných tokov.
 
 ## 1. Načítanie a robustná štandardizácia dát
 
@@ -14,11 +14,10 @@ library(dplyr)
 library(readxl)
 library(knitr)
 library(ggplot2)
-library(scales)
+library(scales) 
 
 subor_platby <- "tbl_platba.xlsx"
 subor_faktury <- "Tbl_faktura.xlsx"
-subor_partner <- "Tbl_partner.xlsx"
 
 if (!file.exists(subor_platby) | !file.exists(subor_faktury)) {
   stop("Chyba: Súbory sa nenašli. Uistite sa, že sú v pracovnom adresári.")
@@ -41,19 +40,18 @@ clean_headers <- function(df) {
 platby <- clean_headers(platby_raw)
 faktury <- clean_headers(faktury_raw)
 
-# Normalizácia kľúčových polí
+# Normalizácia kľúčových polí (ak by sa pri exporte nazvali inak)
 if("suma" %in% names(platby)) platby <- rename(platby, suma_platby = suma)
 if("suma" %in% names(faktury)) faktury <- rename(faktury, suma_faktury = suma)
 if("iban_protistrany" %in% names(platby)) platby <- rename(platby, iban_platby = iban_protistrany)
 
-# Fallback premenovania kľúčov vo faktúrach
+# Fallback: Ochrana premenovania primárnych a cudzích kľúčov z MS Access
 if(!"id_faktura" %in% names(faktury)) {
   if("id" %in% names(faktury)) faktury <- rename(faktury, id_faktura = id)
   else if("id_faktury" %in% names(faktury)) faktury <- rename(faktury, id_faktura = id_faktury)
   else if("pk_faktura" %in% names(faktury)) faktury <- rename(faktury, id_faktura = pk_faktura)
 }
 
-# Fallback premenovania kľúčov v platbách
 if(!"fk_faktura" %in% names(platby)) {
   if("id_faktura_sparovana" %in% names(platby)) platby <- rename(platby, fk_faktura = id_faktura_sparovana)
 }
@@ -61,8 +59,8 @@ if(!"fk_faktura" %in% names(platby)) {
 # Tvorba číselníka mien (z databázy Tbl_mena)
 ciselnik_mien <- data.frame(
   fk_mena = 1:30,
-  Mena_Skratka = c("EUR", "USD", "JPY", "CZK", "DKK", "GBP", "HUF", "PLN", "RON", "SEK",
-                   "CHF", "ISK", "NOK", "TRY", "AUD", "BRL", "CAD", "CNY", "HKD", "IDR",
+  Mena_Skratka = c("EUR", "USD", "JPY", "CZK", "DKK", "GBP", "HUF", "PLN", "RON", "SEK", 
+                   "CHF", "ISK", "NOK", "TRY", "AUD", "BRL", "CAD", "CNY", "HKD", "IDR", 
                    "ILS", "INR", "KRW", "MXN", "MYR", "NZD", "PHP", "SGD", "THB", "ZAR"),
   stringsAsFactors = FALSE
 )
@@ -84,41 +82,6 @@ if("fk_mena" %in% names(faktury)) {
     faktury$fk_mena <- 1
     faktury$Mena_Skratka <- "EUR"
 }
-
-# ==============================================================================
-# NOVÉ: RELAČNÉ NAČÍTANIE TYPU PARTNERA
-# ==============================================================================
-if (file.exists(subor_partner)) {
-  partner_raw <- read_excel(subor_partner)
-  partner <- clean_headers(partner_raw)
-
-  # Normalizácia kľúčov v Tbl_partner
-  if(!"pk_partner" %in% names(partner) && "id_partner" %in% names(partner)) {
-      partner$pk_partner <- partner$id_partner
-  } else if (!"pk_partner" %in% names(partner) && "id" %in% names(partner)) {
-      partner$pk_partner <- partner$id
-  }
-
-  if(!"typ_partnera" %in% names(partner)) partner$typ_partnera <- TRUE
-} else {
-  partner <- data.frame(pk_partner = integer(), typ_partnera = logical())
-  cat("UPOZORNENIE: Súbor Tbl_partner.xlsx sa nenašiel. Typ partnera (Odberateľ/Dodávateľ) bude odhadnutý.
-")
-}
-
-# Prepojenie faktúr s partnermi na zistenie typu
-if(!"fk_partner_id" %in% names(faktury) && "fk_partner" %in% names(faktury)) faktury$fk_partner_id <- faktury$fk_partner
-
-if("fk_partner_id" %in% names(faktury) && "pk_partner" %in% names(partner)) {
-    faktury <- faktury %>%
-      left_join(partner %>% select(pk_partner, typ_partnera), by = c("fk_partner_id" = "pk_partner"))
-} else {
-    faktury$typ_partnera <- TRUE
-}
-
-# Fallback pre prípad prázdnych hodnôt
-if(!"typ_partnera" %in% names(faktury)) faktury$typ_partnera <- TRUE
-faktury$typ_partnera[is.na(faktury$typ_partnera)] <- TRUE
 
 cat("Načítaných platieb:", nrow(platby), "\nNačítaných faktúr:", nrow(faktury), "\n")
 ```
@@ -153,8 +116,6 @@ kable(as.data.frame(table(analyza$Stav_Uhrady)), col.names = c("Stav Úhrady", "
 
 ## 3. Transakčný rozpad s detekciou rizík (Audit Splátok)
 
-V tejto sekcii oddelíme faktúry hradené štandardne (max. 2 splátky) od vysoko rozdrobených úhrad (3 a viac splátok). Pri rizikových splátkach skript pridáva krížovú kontrolu IBANu a Variabilného symbolu.
-
 ```{r drilldown_splatky, message=FALSE}
 detailne_transakcie <- platby %>%
   filter(!is.na(fk_faktura)) %>%
@@ -167,7 +128,7 @@ detailne_transakcie <- platby %>%
   ) %>%
   ungroup() %>%
   inner_join(
-    analyza %>% select(id_faktura, variabilny_symbol, suma_faktury, Stav_Uhrady, datum_vystavenia, iban_faktury = iban, kurz_vystavenia, fk_mena_faktura = fk_mena, Mena_Skratka, typ_partnera),
+    analyza %>% select(id_faktura, variabilny_symbol, suma_faktury, Stav_Uhrady, datum_vystavenia, iban_faktury = iban, kurz_vystavenia, fk_mena_faktura = fk_mena, Mena_Skratka),
     by = c("fk_faktura" = "id_faktura")
   ) %>%
   mutate(
@@ -246,14 +207,12 @@ metody_stats <- platby %>%
 graf_metody <- ggplot(metody_stats, aes(x = reorder(Metoda, Pocet), y = Pocet, fill = Sposob)) +
   geom_col() + geom_text(aes(label=Pocet), hjust=-0.2, size=4) + coord_flip() +
   scale_fill_manual(values = c("Automatické" = "#3b82f6", "Manuálne" = "#94a3b8")) +
-  theme_minimal(base_size = 14) +
+  theme_minimal(base_size = 14) + 
   labs(title = "Úspešnosť jednotlivých metód párovania", x = "", y = "Počet platieb", fill = "")
 print(graf_metody)
 ```
 
 ## 7. Finančná analytika a controlling (Miriam)
-
-V tejto sekcii systém aplikuje prísnu účtovnú matematiku pre určenie kurzového zisku/straty v závislosti od *typu partnera* prevzatého z kmeňových dát.
 
 ### 7.1 Analýza kurzových rozdielov (FX) po mesiacoch
 
@@ -275,14 +234,7 @@ fx_data <- detailne_transakcie %>%
       is.na(pouzity_kurz_nbs) ~ 1.0,
       TRUE ~ as.numeric(pouzity_kurz_nbs)
     ),
-
-    # OPRAVA ZNAMIENKA: Využíva atribút 'typ_partnera' z tabuľky Tbl_partner
-    Znamienko_Partnera = ifelse(typ_partnera %in% c(FALSE, 0, "FALSE", "False", "false") | suma_platby < 0, -1, 1),
-
-    # OPRAVA EUR: Pre EUR je kurzový rozdiel vždy striktne 0
-    Kurzovy_Rozdiel = ifelse(fk_mena_faktura == 1, 0,
-        round(Znamienko_Partnera * ((abs(suma_platby) / kurz_pl_final) - (abs(suma_platby) / kurz_fa_final)), 2)
-    ),
+    Kurzovy_Rozdiel = ifelse(fk_mena_faktura == 1, 0, round((suma_platby / kurz_pl_final) - (suma_platby / kurz_fa_final), 2)),
     Mesiac = format(as.Date(datum), "%Y-%m")
   )
 
@@ -295,7 +247,7 @@ if(nrow(fx_realne) > 0) {
     mutate(Typ_Vysledku = ifelse(Vysledok_FX >= 0, "Zisk", "Strata"))
 
   cat("Celkový zúčtovaný kurzový výsledok podniku: ", round(sum(fx_mesacne$Vysledok_FX), 2), " EUR\n\n")
-
+  
   graf_fx <- ggplot(fx_mesacne, aes(x = Mesiac, y = Vysledok_FX, fill = Typ_Vysledku)) +
     geom_col(color = "black", linewidth = 0.3) +
     geom_text(aes(label = sprintf("%.2f €", Vysledok_FX)), vjust = ifelse(fx_mesacne$Vysledok_FX >= 0, -0.5, 1.5), fontface = "bold") +
@@ -303,7 +255,7 @@ if(nrow(fx_realne) > 0) {
     theme_minimal(base_size = 14) +
     labs(title = "Kurzové rozdiely podľa mesiacov (Realizované platby)", x = "Mesiac", y = "Zisk / Strata (EUR)") +
     theme(legend.position = "none")
-
+  
   print(graf_fx)
 } else {
   cat("V datasete sa zatiaľ nenašli zrealizované platby, pri ktorých by vznikol kurzový rozdiel.\n")
@@ -318,20 +270,20 @@ trend_data <- fx_data %>%
   group_by(Mena_Skratka, datum) %>%
   summarise(Priemerny_Kurz = mean(kurz_pl_final, na.rm = TRUE), .groups = "drop") %>%
   arrange(datum)
-
+  
 if(nrow(trend_data) > 0) {
   graf_kurzov <- ggplot(trend_data, aes(x = as.Date(datum), y = Priemerny_Kurz, color = Mena_Skratka)) +
     geom_line(linewidth = 1) +
     geom_point(size = 2) +
     facet_wrap(~ Mena_Skratka, scales = "free_y") +
     theme_minimal(base_size = 14) +
-    labs(title = "Vývoj kurzov cudzích mien aplikovaných pri úhradách",
+    labs(title = "Vývoj kurzov cudzích mien aplikovaných pri úhradách", 
          subtitle = "Hodnota kurzu použitá pri prepočte bankových platieb v čase",
-         x = "Dátum prijatia/odoslania platby",
+         x = "Dátum prijatia/odoslania platby", 
          y = "Hodnota kurzu (1 EUR = X meny)") +
     theme(legend.position = "none",
           strip.text = element_text(face = "bold", size = 12))
-
+          
   print(graf_kurzov)
 } else {
   cat("Nie sú k dispozícii dostatočné dáta z iných mien pre vykreslenie trendu.\n")
@@ -349,13 +301,13 @@ cashflow_data <- platby %>%
   mutate(
     Mesiac = format(as.Date(datum), "%Y-%m"),
     Typ_Toku = ifelse(suma_platby < 0, "Výdavky (Dodávatelia/Poplatky)", "Príjmy (Odberatelia)"),
-
+    
     kurz_final = case_when(
       fk_mena == 1 ~ 1.0,
       is.na(pouzity_kurz_nbs) ~ 1.0,
       TRUE ~ as.numeric(pouzity_kurz_nbs)
     ),
-
+    
     Suma_EUR = abs(suma_platby) / kurz_final
   ) %>%
   group_by(Mesiac, Typ_Toku) %>%
@@ -381,13 +333,13 @@ if("nazov_protistrany" %in% names(platby)) {
     filter(!is.na(nazov_protistrany) & nazov_protistrany != "") %>%
     mutate(
       Typ_Partnera = ifelse(suma_platby < 0, "Dodávateľ (Naše výdavky)", "Odberateľ (Naše príjmy)"),
-
+      
       kurz_final = case_when(
         fk_mena == 1 ~ 1.0,
         is.na(pouzity_kurz_nbs) ~ 1.0,
         TRUE ~ as.numeric(pouzity_kurz_nbs)
       ),
-
+      
       Suma_EUR = abs(suma_platby) / kurz_final
     ) %>%
     group_by(Typ_Partnera, Nazov_Partnera = nazov_protistrany) %>%
@@ -396,7 +348,7 @@ if("nazov_protistrany" %in% names(platby)) {
     group_by(Typ_Partnera) %>%
     slice_head(n = 5) %>%
     mutate(Celkovy_Obrat_EUR = paste0(format(round(Celkovy_Obrat_EUR, 2), nsmall = 2, big.mark = " "), " €"))
-
+    
   print(kable(top_partneri, format = "markdown", align = "llrc"))
 }
 ```
@@ -412,7 +364,7 @@ kurzy_faktury <- detailne_transakcie %>%
   mutate(Typ_Zaznamu = "Faktúra", Kurz = as.numeric(Kurz))
 
 kurzy_platby <- detailne_transakcie %>%
-  filter(fk_mena_faktura != 1) %>%
+  filter(fk_mena_faktura != 1) %>% 
   select(Druh_Dokladu = var_symbol_banka, Datum = datum, Mena = Mena_Skratka, Kurz = pouzity_kurz_nbs) %>%
   mutate(Typ_Zaznamu = "Platba", Kurz = as.numeric(Kurz))
 
@@ -427,12 +379,12 @@ konfliktne_dni <- vsetky_kurzy %>%
 
 if(nrow(konfliktne_dni) > 0) {
   cat("⚠️ **NÁJDENÁ CHYBA (Konflikt dát):** V databáze existujú rozdielne kurzy pre rovnaký dátum a menu! Nižšie je zoznam konkrétnych dokladov, ktoré spôsobujú tento konflikt:\n\n")
-
+  
   detail_konfliktov <- vsetky_kurzy %>%
     inner_join(konfliktne_dni %>% select(Datum, Mena), by = c("Datum", "Mena")) %>%
     arrange(Datum, Mena, Kurz) %>%
     select(`Dátum` = Datum, Mena, Kurz, `Typ Dokladu` = Typ_Zaznamu, `Identifikátor (VS)` = Druh_Dokladu)
-
+    
   print(kable(detail_konfliktov, format = "markdown", align = "llcll"))
 } else {
   cat("✅ **Test 1 v poriadku:** Všetky kurzy priradené k rovnakému dňu sú pre danú menu navzájom konzistentné.\n")
@@ -446,12 +398,12 @@ anomalie_kurzov <- vsetky_kurzy %>%
     Odchylka_Percento = round(abs(Kurz - Median_Meny) / Median_Meny * 100, 2)
   ) %>%
   ungroup() %>%
-  filter(Odchylka_Percento > 20) %>%
+  filter(Odchylka_Percento > 20) %>% 
   arrange(desc(Odchylka_Percento))
 
 if(nrow(anomalie_kurzov) > 0) {
   cat("\n⚠️ **NÁJDENÉ ANOMÁLIE (Podozrivé hodnoty):** Tieto kurzy v databáze nedávajú matematický zmysel (odchyľujú sa o viac ako 20 % od bežného mediánu danej meny). Pripravte ich na kontrolu:\n")
-  tabulka_anomalii <- anomalie_kurzov %>%
+  tabulka_anomalii <- anomalie_kurzov %>% 
     select(`Typ Záznamu` = Typ_Zaznamu, `Dátum` = Datum, Mena, `Podozrivý Kurz` = Kurz, `Bežný Medián` = Median_Meny, `Odchýlka` = Odchylka_Percento) %>%
     mutate(`Odchýlka` = paste0(`Odchýlka`, " %"))
   print(kable(tabulka_anomalii, format = "markdown", align = "lllrrr"))
@@ -466,7 +418,7 @@ konflikt_mien <- detailne_transakcie %>%
   left_join(ciselnik_mien, by = "fk_mena") %>%
   rename(Mena_Platby_Skratka = Mena_Skratka) %>%
   select(
-    `Identifikátor Fa.` = fk_faktura,
+    `Identifikátor Fa.` = fk_faktura, 
     `VS Faktúry` = variabilny_symbol,
     `Mena Faktúry` = Mena_Faktury_Skratka,
     `VS Platby` = var_symbol_banka,
@@ -479,6 +431,28 @@ if(nrow(konflikt_mien) > 0) {
   print(kable(konflikt_mien, format = "markdown", align = "llclcl"))
 } else {
   cat("\n✅ **Test 3 v poriadku:** Všetky spárované platby boli prijaté v korektnej mene zhodnej s faktúrou.\n")
+}
+
+# --- TEST 4: Kontrola konzistencie IBAN účtov pri jednej faktúre ---
+konflikt_ibanov_splatky <- detailne_transakcie %>%
+  filter(!is.na(iban_platby) & iban_platby != "") %>%
+  group_by(fk_faktura, variabilny_symbol) %>%
+  summarise(
+    Pocet_Roznych_IBAN = n_distinct(iban_platby),
+    Pouzite_IBANy = paste(unique(iban_platby), collapse = " vs "),
+    .groups = "drop"
+  ) %>%
+  filter(Pocet_Roznych_IBAN > 1)
+
+if(nrow(konflikt_ibanov_splatky) > 0) {
+  cat("\n⚠️ **NÁJDENÁ ANOMÁLIA (Rôzne IBANy pri 1 faktúre):** Boli identifikované faktúry, ktoré boli hradené viacerými platbami, pričom peniaze prišli z RÔZNYCH bankových účtov (IBANov). Toto môže indikovať chybu párovania alebo úhradu treťou stranou:\n\n")
+  
+  tabulka_ibanov <- konflikt_ibanov_splatky %>%
+    select(`VS Faktúry` = variabilny_symbol, `Počet rôznych IBAN` = Pocet_Roznych_IBAN, `Zaznamenané IBANy` = Pouzite_IBANy)
+    
+  print(kable(tabulka_ibanov, format = "markdown", align = "lcl"))
+} else {
+  cat("\n✅ **Test 4 v poriadku:** Všetky faktúry hradené viacerými splátkami boli zaplatené z jedného konzistentného IBAN účtu.\n")
 }
 ```
 
